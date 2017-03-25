@@ -9,17 +9,24 @@
 import UIKit
 
 class ViewController: UIViewController {
-
+    
+    var themeView: CEThemeView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+        self.addThemeView()
+    }
+    
+    ///添加选择主题的View
+    func addThemeView() {
+        themeView = CEThemeView(frame: self.view.bounds)
+        self.view.addSubview(themeView)
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-
 
 }
 

@@ -16,6 +16,8 @@
 		F47F83471E852FC600EFCC98 /* CEThemeButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = F47F83461E852FC600EFCC98 /* CEThemeButton.swift */; };
 		F47F83491E85306700EFCC98 /* CECategorySubscriberCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F47F83481E85306700EFCC98 /* CECategorySubscriberCell.swift */; };
 		F47F834B1E8531CF00EFCC98 /* CEThemeScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F47F834A1E8531CF00EFCC98 /* CEThemeScrollView.swift */; };
+		F495225D1E860EC10046FB35 /* CEThemeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F495225C1E860EC10046FB35 /* CEThemeView.swift */; };
+		F49522621E86159E0046FB35 /* UIViewConstraintExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F49522611E86159E0046FB35 /* UIViewConstraintExtension.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,6 +32,8 @@
 		F47F83461E852FC600EFCC98 /* CEThemeButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CEThemeButton.swift; sourceTree = "<group>"; };
 		F47F83481E85306700EFCC98 /* CECategorySubscriberCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CECategorySubscriberCell.swift; sourceTree = "<group>"; };
 		F47F834A1E8531CF00EFCC98 /* CEThemeScrollView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CEThemeScrollView.swift; sourceTree = "<group>"; };
+		F495225C1E860EC10046FB35 /* CEThemeView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CEThemeView.swift; sourceTree = "<group>"; };
+		F49522611E86159E0046FB35 /* UIViewConstraintExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIViewConstraintExtension.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -62,6 +66,7 @@
 		F47F832E1E85240F00EFCC98 /* CEScrollMenue */ = {
 			isa = PBXGroup;
 			children = (
+				F495225E1E8614A70046FB35 /* Extension */,
 				F47F83411E852F3100EFCC98 /* CEThemeScrollView */,
 				F47F832F1E85240F00EFCC98 /* AppDelegate.swift */,
 				F47F83311E85240F00EFCC98 /* ViewController.swift */,
@@ -80,8 +85,18 @@
 				F47F83461E852FC600EFCC98 /* CEThemeButton.swift */,
 				F47F83481E85306700EFCC98 /* CECategorySubscriberCell.swift */,
 				F47F834A1E8531CF00EFCC98 /* CEThemeScrollView.swift */,
+				F495225C1E860EC10046FB35 /* CEThemeView.swift */,
 			);
 			path = CEThemeScrollView;
+			sourceTree = "<group>";
+		};
+		F495225E1E8614A70046FB35 /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				F49522611E86159E0046FB35 /* UIViewConstraintExtension.swift */,
+			);
+			name = Extension;
+			path = Tools;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -157,12 +172,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F49522621E86159E0046FB35 /* UIViewConstraintExtension.swift in Sources */,
 				F47F83321E85240F00EFCC98 /* ViewController.swift in Sources */,
 				F47F83471E852FC600EFCC98 /* CEThemeButton.swift in Sources */,
 				F47F83451E852F8500EFCC98 /* CEThemeLabel.swift in Sources */,
 				F47F834B1E8531CF00EFCC98 /* CEThemeScrollView.swift in Sources */,
 				F47F83491E85306700EFCC98 /* CECategorySubscriberCell.swift in Sources */,
 				F47F83301E85240F00EFCC98 /* AppDelegate.swift in Sources */,
+				F495225D1E860EC10046FB35 /* CEThemeView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -324,6 +341,7 @@
 				F47F83401E85240F00EFCC98 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
