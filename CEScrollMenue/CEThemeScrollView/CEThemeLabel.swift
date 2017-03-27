@@ -13,6 +13,8 @@ class CEThemeLabel: UILabel {
         super.init(frame: frame)
         self.textColor = UIColor.white
         self.textAlignment = .center
+        self.font = UIFont.systemFont(ofSize: 15)
+        self.minimumScaleFactor = 0.5
     }
     
     required init?(coder aDecoder: NSCoder) {

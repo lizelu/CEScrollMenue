@@ -41,9 +41,12 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
         self.themeCollectionView.delegate = self
         self.themeCollectionView.dataSource = self
         self.themeCollectionView.isScrollEnabled = true
-        self.themeCollectionView.register(CEThemeCollectionViewCell.classForCoder(), forCellWithReuseIdentifier: reuseIdentifier)
-        self.themeCollectionView.register(CEHeaderCollectionReusableView.classForCoder(), forSupplementaryViewOfKind: UICollectionElementKindSectionHeader, withReuseIdentifier: headerReuseIdentifier)
         self.view.addSubview(self.themeCollectionView)
+        
+        self.themeCollectionView.setUpdataDataSource { (at, to) in
+            print(at)
+            print(to)
+        }
     }
     
     
@@ -74,7 +77,7 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
     
     /// 改变Cell的尺寸
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: 60, height: 30)
+        return CGSize(width: 80, height: 40)
     }
     
     

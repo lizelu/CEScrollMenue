@@ -7,18 +7,22 @@
 //
 
 import UIKit
-
+typealias UpdateDataSourceClosure = (_ at: IndexPath, _ to: IndexPath) -> Void
 class CEThemeCollectionView: UICollectionView {
     
     var currentTapIndexPath: IndexPath!
     var targetIndexPath: IndexPath!
     var moveView: UIView!
     var moveCell: UICollectionViewCell!
+    var updateDataSourceClosure: UpdateDataSourceClosure!
     
     
     override init(frame: CGRect, collectionViewLayout layout: UICollectionViewLayout) {
         super.init(frame: frame, collectionViewLayout: layout)
         self.addGestureRecognizer()
+        self.register(CEThemeCollectionViewCell.classForCoder(), forCellWithReuseIdentifier: reuseIdentifier)
+        self.register(CEHeaderCollectionReusableView.classForCoder(), forSupplementaryViewOfKind: UICollectionElementKindSectionHeader, withReuseIdentifier: headerReuseIdentifier)
+
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -29,6 +33,10 @@ class CEThemeCollectionView: UICollectionView {
         let gestureRecognizer = UILongPressGestureRecognizer(target: self, action: #selector(longPrese(gestureRecognizer:)))
         gestureRecognizer.minimumPressDuration = 1
         self.addGestureRecognizer(gestureRecognizer)
+    }
+    
+    func setUpdataDataSource(updateDataSourceClosure: @escaping UpdateDataSourceClosure) {
+        self.updateDataSourceClosure = updateDataSourceClosure
     }
     
     
@@ -95,6 +103,11 @@ class CEThemeCollectionView: UICollectionView {
         if moveIndexPath.section == currentTapIndexPath.section &&
             moveIndexPath.row != currentTapIndexPath.row {
             self.moveItem(at: currentTapIndexPath, to: moveIndexPath)
+            
+            //更新数据源
+            if self.updateDataSourceClosure != nil {
+                self.updateDataSourceClosure(currentTapIndexPath, moveIndexPath)
+            }
             self.currentTapIndexPath = moveIndexPath
         }
         self.moveView.center = point
@@ -106,10 +119,4 @@ class CEThemeCollectionView: UICollectionView {
         self.moveView.removeFromSuperview()
         self.moveCell.isHidden = false
     }
-    
-    override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
-        print("move")
-    }
-
-
 }
