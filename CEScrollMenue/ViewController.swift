@@ -13,9 +13,9 @@ let headerReuseIdentifier = "CEHeaderCollectionReusableView"
 let SCREEN_WIDTH = UIScreen.main.bounds.width
 let SCREEN_HEIGHT = UIScreen.main.bounds.height
 
-class ViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
+class ViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout{
     
-    var themeCollectionView: UICollectionView!
+    var themeCollectionView: CEThemeCollectionView!
     
     var themeCollectionViewWidth: CGFloat {
         get {
@@ -37,7 +37,7 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
     
     ///添加选择主题的View
     func addThemeCollectionView() {
-        self.themeCollectionView = UICollectionView(frame: CGRect(x: 30, y: 30, width:themeCollectionViewWidth,  height: themeCollectionViewHeight), collectionViewLayout: UICollectionViewFlowLayout())
+        self.themeCollectionView = CEThemeCollectionView(frame: CGRect(x: 30, y: 30, width:themeCollectionViewWidth,  height: themeCollectionViewHeight), collectionViewLayout: UICollectionViewFlowLayout())
         self.themeCollectionView.delegate = self
         self.themeCollectionView.dataSource = self
         self.themeCollectionView.isScrollEnabled = true

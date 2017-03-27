@@ -9,9 +9,14 @@
 import UIKit
 
 class CEHeaderCollectionReusableView: UICollectionReusableView {
-    
-    override func layoutSubviews() {
+    override init(frame: CGRect) {
+        super.init(frame: frame)
         self.backgroundColor = UIColor.brown
     }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     
 }
