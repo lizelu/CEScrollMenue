@@ -15,14 +15,16 @@ class CEThemeCollectionView: UICollectionView {
     var moveView: UIView!
     var moveCell: UICollectionViewCell!
     var updateDataSourceClosure: UpdateDataSourceClosure!
+    var gestureRecognizer: UILongPressGestureRecognizer!
+    
     
     
     override init(frame: CGRect, collectionViewLayout layout: UICollectionViewLayout) {
         super.init(frame: frame, collectionViewLayout: layout)
-        self.addGestureRecognizer()
         self.register(CEThemeCollectionViewCell.classForCoder(), forCellWithReuseIdentifier: reuseIdentifier)
         self.register(CEHeaderCollectionReusableView.classForCoder(), forSupplementaryViewOfKind: UICollectionElementKindSectionHeader, withReuseIdentifier: headerReuseIdentifier)
-
+        self.isScrollEnabled = true
+        self.addGestureRecognizer()
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -30,7 +32,7 @@ class CEThemeCollectionView: UICollectionView {
     }
     
     func addGestureRecognizer() {
-        let gestureRecognizer = UILongPressGestureRecognizer(target: self, action: #selector(longPrese(gestureRecognizer:)))
+        gestureRecognizer = UILongPressGestureRecognizer(target: self, action: #selector(longPrese(gestureRecognizer:)))
         gestureRecognizer.minimumPressDuration = 1
         self.addGestureRecognizer(gestureRecognizer)
     }

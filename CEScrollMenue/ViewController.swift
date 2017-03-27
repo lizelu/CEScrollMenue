@@ -40,7 +40,7 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
         self.themeCollectionView = CEThemeCollectionView(frame: CGRect(x: 30, y: 30, width:themeCollectionViewWidth,  height: themeCollectionViewHeight), collectionViewLayout: UICollectionViewFlowLayout())
         self.themeCollectionView.delegate = self
         self.themeCollectionView.dataSource = self
-        self.themeCollectionView.isScrollEnabled = true
+
         self.view.addSubview(self.themeCollectionView)
         
         self.themeCollectionView.setUpdataDataSource { (at, to) in
@@ -93,12 +93,6 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
         return CGSize(width: 300, height: 50)
     }
     
-
-    
-    // MARK: - UICollectionViewDataSource
-    
-    
-
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
