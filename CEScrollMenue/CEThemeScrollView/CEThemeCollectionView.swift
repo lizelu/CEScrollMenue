@@ -27,10 +27,15 @@ class CEThemeCollectionView: UICollectionView, UICollectionViewDelegate, UIColle
         self.isScrollEnabled = true
         self.delegate = self
         self.addGestureRecognizer()
+        self.isEnableEdit(isEditor: false)
     }
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    func isEnableEdit(isEditor: Bool) {
+        self.gestureRecognizer.isEnabled = isEditor
     }
     
     func addGestureRecognizer() {
@@ -46,6 +51,7 @@ class CEThemeCollectionView: UICollectionView, UICollectionViewDelegate, UIColle
     func setSwapDataSource(swapDataSourceClosure: @escaping SwapDataSourceClosure) {
         self.swapDataSourceClosure = swapDataSourceClosure
     }
+    
 
     
     /// 长按手势所触发的方法
@@ -54,6 +60,29 @@ class CEThemeCollectionView: UICollectionView, UICollectionViewDelegate, UIColle
     func longPrese(gestureRecognizer: UILongPressGestureRecognizer) {
         
         let point = gestureRecognizer.location(in: self)
+        let tapIndexPath = self.indexPathForItem(at: point)
+        
+        switch gestureRecognizer.state {
+        case .began:
+            self.currentTapIndexPath = tapIndexPath
+            self.beginInteractiveMovementForItem(at: self.currentTapIndexPath)
+            
+        case .changed:
+            self.updateInteractiveMovementTargetPosition(point)
+            
+        case .ended:
+            self.self.endInteractiveMovement()
+            
+        default:
+            self.cancelInteractiveMovement()
+        }
+        
+        return
+        
+        //只有第一个Second才有长按手势
+        if tapIndexPath?.section != 0 {
+            return
+        }
         
         if gestureRecognizer.state == .began {
             longPressBegin(point: point)
@@ -120,6 +149,8 @@ class CEThemeCollectionView: UICollectionView, UICollectionViewDelegate, UIColle
             self.currentTapIndexPath = moveIndexPath
         }
         self.moveView.center = point
+        
+        print(point)
     }
     
     
@@ -160,6 +191,10 @@ class CEThemeCollectionView: UICollectionView, UICollectionViewDelegate, UIColle
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
         return CGSize(width: self.frame.size.width, height: 60)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
+        return UIEdgeInsetsMake(0, 30, 0, 30)
     }
 
 }

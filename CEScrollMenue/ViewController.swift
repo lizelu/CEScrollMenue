@@ -20,13 +20,13 @@ class ViewController: UIViewController, UICollectionViewDataSource{
     
     var themeCollectionViewWidth: CGFloat {
         get {
-            return SCREEN_WIDTH - 60
+            return SCREEN_WIDTH
         }
     }
     
     var themeCollectionViewHeight: CGFloat {
         get {
-            return SCREEN_HEIGHT - 60
+            return SCREEN_HEIGHT - 30
         }
     }
     
@@ -39,7 +39,7 @@ class ViewController: UIViewController, UICollectionViewDataSource{
     
     ///添加选择主题的View
     func addThemeCollectionView() {
-        self.themeCollectionView = CEThemeCollectionView(frame: CGRect(x: 30, y: 30, width:themeCollectionViewWidth,  height: themeCollectionViewHeight), collectionViewLayout: UICollectionViewFlowLayout())
+        self.themeCollectionView = CEThemeCollectionView(frame: CGRect(x: 0, y: 30, width:themeCollectionViewWidth,  height: themeCollectionViewHeight), collectionViewLayout: UICollectionViewFlowLayout())
         self.themeCollectionView.dataSource = self
 
         self.view.addSubview(self.themeCollectionView)
@@ -109,13 +109,29 @@ class ViewController: UIViewController, UICollectionViewDataSource{
         let headerView: CEHeaderCollectionReusableView = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: headerReuseIdentifier, for: indexPath) as! CEHeaderCollectionReusableView
         if indexPath.section == 0 {
             headerView.titleLabel.text = "我的频道"
+            headerView.isHiddenEditeButton = false
         } else {
             headerView.titleLabel.text = "推荐频道"
+            headerView.isHiddenEditeButton = true
+        }
+        
+        weak var weak_self = self
+        headerView.setTapEditButtonClosure { (isEdit) in
+            weak_self?.themeCollectionView.isEnableEdit(isEditor: isEdit)
         }
         
         return headerView
     }
     
+    func collectionView(_ collectionView: UICollectionView, canMoveItemAt indexPath: IndexPath) -> Bool {
+        
+        return true
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, moveItemAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
+        
+        self.updateDataSource(at: sourceIndexPath, to: destinationIndexPath)
+    }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.

@@ -16,6 +16,7 @@ class CEThemeEditButton: UIButton {
         self.layer.cornerRadius = 10
         self.setTitle("编辑", for: .normal)
         self.setTitle("完成", for: .selected)
+        self.setTitleColor(UIColor.red, for: .normal)
         self.isSelected = false
         self.titleLabel?.font = UIFont.systemFont(ofSize: 11)
 
@@ -24,13 +25,4 @@ class CEThemeEditButton: UIButton {
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-
-    /*
-    // Only override draw() if you perform custom drawing.
-    // An empty implementation adversely affects performance during animation.
-    override func draw(_ rect: CGRect) {
-        // Drawing code
-    }
-    */
-
 }
