@@ -159,7 +159,7 @@ class CEThemeCollectionView: UICollectionView, UICollectionViewDelegate, UIColle
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
-        return CGSize(width: self.frame.size.width, height: 40)
+        return CGSize(width: self.frame.size.width, height: 60)
     }
 
 }
