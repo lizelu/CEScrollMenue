@@ -17,6 +17,7 @@
 		F4A5AECE1E88A5BB00DFDF2A /* CEThemeCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4A5AECD1E88A5BB00DFDF2A /* CEThemeCollectionViewCell.swift */; };
 		F4A5AED01E88A92700DFDF2A /* CEHeaderCollectionReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4A5AECF1E88A92700DFDF2A /* CEHeaderCollectionReusableView.swift */; };
 		F4A5AED41E88BE3200DFDF2A /* CEThemeCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4A5AED31E88BE3200DFDF2A /* CEThemeCollectionView.swift */; };
+		F4A5AED61E8910F000DFDF2A /* CEThemeEditButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4A5AED51E8910F000DFDF2A /* CEThemeEditButton.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -32,6 +33,7 @@
 		F4A5AECD1E88A5BB00DFDF2A /* CEThemeCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CEThemeCollectionViewCell.swift; sourceTree = "<group>"; };
 		F4A5AECF1E88A92700DFDF2A /* CEHeaderCollectionReusableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CEHeaderCollectionReusableView.swift; sourceTree = "<group>"; };
 		F4A5AED31E88BE3200DFDF2A /* CEThemeCollectionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CEThemeCollectionView.swift; sourceTree = "<group>"; };
+		F4A5AED51E8910F000DFDF2A /* CEThemeEditButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CEThemeEditButton.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -84,6 +86,7 @@
 				F4A5AECD1E88A5BB00DFDF2A /* CEThemeCollectionViewCell.swift */,
 				F4A5AECF1E88A92700DFDF2A /* CEHeaderCollectionReusableView.swift */,
 				F4A5AED31E88BE3200DFDF2A /* CEThemeCollectionView.swift */,
+				F4A5AED51E8910F000DFDF2A /* CEThemeEditButton.swift */,
 			);
 			path = CEThemeScrollView;
 			sourceTree = "<group>";
@@ -176,6 +179,7 @@
 				F4A5AED01E88A92700DFDF2A /* CEHeaderCollectionReusableView.swift in Sources */,
 				F4A5AED41E88BE3200DFDF2A /* CEThemeCollectionView.swift in Sources */,
 				F4A5AECE1E88A5BB00DFDF2A /* CEThemeCollectionViewCell.swift in Sources */,
+				F4A5AED61E8910F000DFDF2A /* CEThemeEditButton.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
