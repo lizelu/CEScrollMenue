@@ -23,6 +23,7 @@ class CEThemeCollectionView: UICollectionView, UICollectionViewDelegate, UIColle
         super.init(frame: frame, collectionViewLayout: layout)
         self.register(CEThemeCollectionViewCell.classForCoder(), forCellWithReuseIdentifier: reuseIdentifier)
         self.register(CEHeaderCollectionReusableView.classForCoder(), forSupplementaryViewOfKind: UICollectionElementKindSectionHeader, withReuseIdentifier: headerReuseIdentifier)
+        self.backgroundColor = UIColor.clear
         self.isScrollEnabled = true
         self.delegate = self
         self.addGestureRecognizer()
@@ -158,7 +159,7 @@ class CEThemeCollectionView: UICollectionView, UICollectionViewDelegate, UIColle
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
-        return CGSize(width: 300, height: 50)
+        return CGSize(width: self.frame.size.width, height: 40)
     }
 
 }

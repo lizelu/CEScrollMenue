@@ -9,9 +9,13 @@
 import UIKit
 
 class CEHeaderCollectionReusableView: UICollectionReusableView {
+    var titleLabel: UILabel!
     override init(frame: CGRect) {
         super.init(frame: frame)
-        self.backgroundColor = UIColor.brown
+        self.backgroundColor = UIColor.clear
+        self.titleLabel = UILabel(frame: self.bounds)
+        self.titleLabel.font = UIFont.boldSystemFont(ofSize: 15)
+        self.addSubview(titleLabel)
     }
     
     required init?(coder aDecoder: NSCoder) {

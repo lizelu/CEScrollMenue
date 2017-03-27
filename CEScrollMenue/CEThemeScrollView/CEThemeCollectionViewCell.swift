@@ -16,7 +16,7 @@ class CEThemeCollectionViewCell: UICollectionViewCell {
             textLabel = CEThemeLabel(frame: self.contentView.bounds)
             self.contentView.addSubview(textLabel)
         }
-        self.backgroundColor = UIColor.red
+        self.backgroundView = UIImageView(image: #imageLiteral(resourceName: "cell_background"))
     }
     
     required init?(coder aDecoder: NSCoder) {

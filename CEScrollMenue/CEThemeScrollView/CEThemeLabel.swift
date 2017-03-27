@@ -11,9 +11,9 @@ import UIKit
 class CEThemeLabel: UILabel {
     override init(frame: CGRect) {
         super.init(frame: frame)
-        self.textColor = UIColor.white
+        self.textColor = UIColor.darkGray
         self.textAlignment = .center
-        self.font = UIFont.systemFont(ofSize: 15)
+        self.font = UIFont.systemFont(ofSize: 14)
         self.minimumScaleFactor = 0.5
     }
     
