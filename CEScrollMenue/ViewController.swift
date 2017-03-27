@@ -13,9 +13,10 @@ let headerReuseIdentifier = "CEHeaderCollectionReusableView"
 let SCREEN_WIDTH = UIScreen.main.bounds.width
 let SCREEN_HEIGHT = UIScreen.main.bounds.height
 
-class ViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout{
+class ViewController: UIViewController, UICollectionViewDataSource{
     
     var themeCollectionView: CEThemeCollectionView!
+    var dataSource: Array<Array<String>>!
     
     var themeCollectionViewWidth: CGFloat {
         get {
@@ -32,37 +33,75 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.dataSource = createDataSource()
         self.addThemeCollectionView()
     }
     
     ///添加选择主题的View
     func addThemeCollectionView() {
         self.themeCollectionView = CEThemeCollectionView(frame: CGRect(x: 30, y: 30, width:themeCollectionViewWidth,  height: themeCollectionViewHeight), collectionViewLayout: UICollectionViewFlowLayout())
-        self.themeCollectionView.delegate = self
         self.themeCollectionView.dataSource = self
 
         self.view.addSubview(self.themeCollectionView)
         
+        weak var weak_self = self
+        self.themeCollectionView.setSwapDataSource { (at, to) in
+            weak_self?.swap(at: at, to: to)
+        }
         self.themeCollectionView.setUpdataDataSource { (at, to) in
-            print(at)
-            print(to)
+            weak_self?.updateDataSource(at: at, to: to)
         }
     }
     
     
+    /// 同一个Section中进行交换
+    ///
+    /// - Parameters:
+    ///   - at: <#at description#>
+    ///   - to: <#to description#>
+    func swap(at: IndexPath, to: IndexPath) {
+        let temp = self.dataSource[at.section][at.row]
+        self.dataSource[at.section][at.row] = self.dataSource[to.section][to.row]
+        self.dataSource[to.section][to.row] = temp
+    }
+    
+    
+    /// 不同的Section中进行更新
+    ///
+    /// - Parameters:
+    ///   - at: <#at description#>
+    ///   - to: <#to description#>
+    func updateDataSource(at: IndexPath, to: IndexPath) {
+        let removeItem = self.dataSource[at.section].remove(at: at.row)
+        self.dataSource[to.section].insert(removeItem, at: 0)
+    }
+    
+    func createDataSource() -> Array<Array<String>> {
+        var dataSource = Array<Array<String>>()
+        for i in 0..<2 {
+            var subArray = Array<String>()
+            for j in 0..<15 {
+                subArray.append("菜单\(i)-\(j)")
+            }
+            dataSource.append(subArray)
+        }
+        return dataSource
+    }
+    
     
     // Mark: - UICollectionViewDataSource
+    
     func numberOfSections(in collectionView: UICollectionView) -> Int {
-        return 2
+        return self.dataSource.count
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 30
+        return self.dataSource[section].count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell: CEThemeCollectionViewCell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as! CEThemeCollectionViewCell
-        cell.textLabel.text = "\(indexPath.section)-\(indexPath.row)"
+        cell.textLabel.text = dataSource[indexPath.section][indexPath.row]
         cell.backgroundColor = UIColor.red
         return cell;
     }
@@ -70,27 +109,6 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
     func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
         let headerView = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: headerReuseIdentifier, for: indexPath)
         return headerView
-    }
-    
-    // MARK: - UICollectionViewDelegateFlowLayout
-    
-    
-    /// 改变Cell的尺寸
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: 80, height: 40)
-    }
-    
-    
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-        return 10
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
-        return 10
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
-        return CGSize(width: 300, height: 50)
     }
     
     override func didReceiveMemoryWarning() {

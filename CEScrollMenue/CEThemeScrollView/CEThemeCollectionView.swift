@@ -8,22 +8,23 @@
 
 import UIKit
 typealias UpdateDataSourceClosure = (_ at: IndexPath, _ to: IndexPath) -> Void
-class CEThemeCollectionView: UICollectionView {
+typealias SwapDataSourceClosure = (_ at: IndexPath, _ to: IndexPath) -> Void
+class CEThemeCollectionView: UICollectionView, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
     
     var currentTapIndexPath: IndexPath!
     var targetIndexPath: IndexPath!
     var moveView: UIView!
     var moveCell: UICollectionViewCell!
     var updateDataSourceClosure: UpdateDataSourceClosure!
+    var swapDataSourceClosure: SwapDataSourceClosure!
     var gestureRecognizer: UILongPressGestureRecognizer!
-    
-    
     
     override init(frame: CGRect, collectionViewLayout layout: UICollectionViewLayout) {
         super.init(frame: frame, collectionViewLayout: layout)
         self.register(CEThemeCollectionViewCell.classForCoder(), forCellWithReuseIdentifier: reuseIdentifier)
         self.register(CEHeaderCollectionReusableView.classForCoder(), forSupplementaryViewOfKind: UICollectionElementKindSectionHeader, withReuseIdentifier: headerReuseIdentifier)
         self.isScrollEnabled = true
+        self.delegate = self
         self.addGestureRecognizer()
     }
     
@@ -41,6 +42,10 @@ class CEThemeCollectionView: UICollectionView {
         self.updateDataSourceClosure = updateDataSourceClosure
     }
     
+    func setSwapDataSource(swapDataSourceClosure: @escaping SwapDataSourceClosure) {
+        self.swapDataSourceClosure = swapDataSourceClosure
+    }
+
     
     /// 长按手势所触发的方法
     ///
@@ -58,7 +63,7 @@ class CEThemeCollectionView: UICollectionView {
         }
     
         if gestureRecognizer.state == .ended {
-            longPressEnd()
+            longPressEnd(point: point)
         }
     }
     
@@ -108,7 +113,8 @@ class CEThemeCollectionView: UICollectionView {
             
             //更新数据源
             if self.updateDataSourceClosure != nil {
-                self.updateDataSourceClosure(currentTapIndexPath, moveIndexPath)
+                self.swapDataSourceClosure(currentTapIndexPath, moveIndexPath)
+                self.reloadData()
             }
             self.currentTapIndexPath = moveIndexPath
         }
@@ -117,8 +123,42 @@ class CEThemeCollectionView: UICollectionView {
     
     
     /// 长按结束
-    func longPressEnd() {
+    func longPressEnd(point: CGPoint) {
         self.moveView.removeFromSuperview()
         self.moveCell.isHidden = false
+        
+        guard let moveEndIndexPath = self.indexPathForItem(at: point) else {
+            return
+        }
+        
+        //不同的Section
+        if moveEndIndexPath.section != currentTapIndexPath.section {
+            //更新数据源
+            if self.updateDataSourceClosure != nil {
+                self.updateDataSourceClosure(currentTapIndexPath, moveEndIndexPath)
+            }
+        }
+        self.reloadData()
     }
+    
+    // MARK: - UICollectionViewDelegateFlowLayout
+    
+    /// 改变Cell的尺寸
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        return CGSize(width: 80, height: 40)
+    }
+    
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+        return 5
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
+        return 5
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
+        return CGSize(width: 300, height: 50)
+    }
+
 }
