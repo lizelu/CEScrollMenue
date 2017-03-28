@@ -19,6 +19,7 @@ class CEThemeEditButton: UIButton {
         self.setTitleColor(UIColor.red, for: .normal)
         self.isSelected = false
         self.titleLabel?.font = UIFont.systemFont(ofSize: 11)
+        self.isHidden = true
 
     }
     

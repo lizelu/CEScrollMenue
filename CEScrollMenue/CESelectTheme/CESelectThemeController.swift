@@ -12,6 +12,8 @@ let reuseIdentifier = "CEThemeCollectionViewCell"
 let headerReuseIdentifier = "CEHeaderCollectionReusableView"
 let SCREEN_WIDTH = UIScreen.main.bounds.width
 let SCREEN_HEIGHT = UIScreen.main.bounds.height
+let SelectThemeBackgroundColor = UIColor(red: 235/255, green: 235/255, blue: 235/255, alpha: 1)
+
 
 enum SectionType: Int {
     case FirstSection = 0
@@ -58,12 +60,11 @@ class CESelectThemeController: UIViewController, UICollectionViewDataSource{
         }
     }
     
-    
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.view.backgroundColor = UIColor(red: 235/255, green: 235/255, blue: 235/255, alpha: 1)
+        self.view.backgroundColor = SelectThemeBackgroundColor
         self.addCloseButton()
-        self.dataSource = createDataSource()
+        self.dataSource = Tools.createDataSource()
         self.addThemeCollectionView()
     }
     
@@ -73,31 +74,11 @@ class CESelectThemeController: UIViewController, UICollectionViewDataSource{
         self.view.addSubview(closeButton)
     }
     
-    func tapCloseButton(sender: UIButton) {
-        self.dismiss(animated: true) {
-        }
-    }
-    
     ///添加选择主题的View
     func addThemeCollectionView() {
         self.themeCollectionView = CEThemeCollectionView(frame: CGRect(x: 0, y: 60, width:themeCollectionViewWidth,  height: themeCollectionViewHeight), collectionViewLayout: UICollectionViewFlowLayout())
         self.themeCollectionView.dataSource = self
-
         self.view.addSubview(self.themeCollectionView)
-    }
-    
-    
-    
-    func createDataSource() -> Array<Array<String>> {
-        var dataSource = Array<Array<String>>()
-        for i in 0..<2 {
-            var subArray = Array<String>()
-            for j in 0..<15 {
-                subArray.append("频道\(i)-\(j)")
-            }
-            dataSource.append(subArray)
-        }
-        return dataSource
     }
     
     
@@ -112,23 +93,26 @@ class CESelectThemeController: UIViewController, UICollectionViewDataSource{
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell: CEThemeCollectionViewCell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as! CEThemeCollectionViewCell
-        cell.textLabel.text = dataSource[indexPath.section][indexPath.row]
-        
-        if indexPath.section == 0 {
-            cell.isHiddenEditImageView(isHidden: !self.isEdit)
-            cell.editButton.isEnabled = self.isEdit
-        } else {
-            cell.isHiddenEditImageView(isHidden: true)
-            cell.editButton.isEnabled = true
-        }
-        
-        weak var weak_self = self
-        cell.setTapButtonClosure { (currentCell) in
-            weak_self?.tapCellButton(cell: currentCell)
-        }
-        
-        return cell;
+        return fetchCEThemeCollectionViewCell(indexPath: indexPath)
+    }
+
+    func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
+        return fetchCEHeaderCollectionReusableView(indexPath: indexPath, kind: kind)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, canMoveItemAt indexPath: IndexPath) -> Bool {
+        return true
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, moveItemAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
+        self.updateDataSource(at: sourceIndexPath, to: destinationIndexPath)
+        self.themeCollectionView.reloadData()
+    }
+    
+    
+    // MARK: - Event Response
+    func tapCloseButton(sender: UIButton) {
+        self.dismiss(animated: true) {}
     }
     
     func tapCellButton(cell: CEThemeCollectionViewCell) {
@@ -144,10 +128,11 @@ class CESelectThemeController: UIViewController, UICollectionViewDataSource{
         }
         self.themeCollectionView.reloadData()
     }
+
     
-    func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
-        
-        let headerView: CEHeaderCollectionReusableView = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: headerReuseIdentifier, for: indexPath) as! CEHeaderCollectionReusableView
+    // MARK: - private method
+    func fetchCEHeaderCollectionReusableView(indexPath: IndexPath, kind: String) -> CEHeaderCollectionReusableView {
+        let headerView: CEHeaderCollectionReusableView = self.themeCollectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: headerReuseIdentifier, for: indexPath) as! CEHeaderCollectionReusableView
         headerView.editButton.isSelected = self.isEdit
         
         if let sectionType = SectionType.init(rawValue: indexPath.section) {
@@ -161,25 +146,30 @@ class CESelectThemeController: UIViewController, UICollectionViewDataSource{
             weak_self?.themeCollectionView.isEnableEdit(isEditor: isEdit)
             weak_self?.themeCollectionView.reloadData()
         }
-        
+
         return headerView
     }
     
-    func collectionView(_ collectionView: UICollectionView, canMoveItemAt indexPath: IndexPath) -> Bool {
-        return true
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, moveItemAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
+    func fetchCEThemeCollectionViewCell(indexPath: IndexPath ) -> CEThemeCollectionViewCell {
+        let cell: CEThemeCollectionViewCell = self.themeCollectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as! CEThemeCollectionViewCell
+        cell.textLabel.text = dataSource[indexPath.section][indexPath.row]
         
-        self.updateDataSource(at: sourceIndexPath, to: destinationIndexPath)
-        self.themeCollectionView.reloadData()
+        if indexPath.section == 0 {
+            cell.isHiddenEditImageView(isHidden: !self.isEdit)
+            cell.editButton.isEnabled = self.isEdit
+        } else {
+            cell.isHiddenEditImageView(isHidden: true)
+            cell.editButton.isEnabled = true
+        }
+        
+        weak var weak_self = self
+        cell.setTapButtonClosure { (currentCell) in
+            weak_self?.tapCellButton(cell: currentCell)
+        }
+        return cell
     }
     
-    /// 不同的Section中进行更新
-    ///
-    /// - Parameters:
-    ///   - at: <#at description#>
-    ///   - to: <#to description#>
+    //更新数据源
     func updateDataSource(at: IndexPath, to: IndexPath) {
         let removeItem = self.dataSource[at.section].remove(at: at.row)
         self.dataSource[to.section].insert(removeItem, at: 0)

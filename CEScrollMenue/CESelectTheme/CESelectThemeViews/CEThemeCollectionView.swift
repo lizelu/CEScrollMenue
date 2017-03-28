@@ -20,19 +20,17 @@ class CEThemeCollectionView: UICollectionView, UICollectionViewDelegate, UIColle
     
     override init(frame: CGRect, collectionViewLayout layout: UICollectionViewLayout) {
         super.init(frame: frame, collectionViewLayout: layout)
+        self.config()
+        self.addGestureRecognizer()
+    }
+    
+    func config() {
         self.register(CEThemeCollectionViewCell.classForCoder(), forCellWithReuseIdentifier: reuseIdentifier)
         self.register(CEHeaderCollectionReusableView.classForCoder(), forSupplementaryViewOfKind: UICollectionElementKindSectionHeader, withReuseIdentifier: headerReuseIdentifier)
         self.backgroundColor = UIColor.clear
         self.isScrollEnabled = true
         self.delegate = self
-        self.addGestureRecognizer()
-        self.isEnableEdit(isEditor: false)
     }
-    
-    required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-    
     
     /// 设置手势是否可用
     ///
@@ -45,6 +43,7 @@ class CEThemeCollectionView: UICollectionView, UICollectionViewDelegate, UIColle
         gestureRecognizer = UILongPressGestureRecognizer(target: self, action: #selector(longPrese(gestureRecognizer:)))
         gestureRecognizer.minimumPressDuration = 1
         self.addGestureRecognizer(gestureRecognizer)
+        self.isEnableEdit(isEditor: false)
     }
     
     /// 长按手势所触发的方法
@@ -148,5 +147,13 @@ class CEThemeCollectionView: UICollectionView, UICollectionViewDelegate, UIColle
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
         return UIEdgeInsetsMake(0, 15, 0, 15)
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+
+    deinit {
+        print("CEThemeCollectionView-deinit")
     }
 }
