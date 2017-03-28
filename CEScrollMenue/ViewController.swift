@@ -19,27 +19,17 @@ class ViewController: UIViewController {
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
     
     @IBAction func tapButton(_ sender: Any) {
         let selectThemeController = CESelectThemeController(dataSource: self.dataSource)
+        
+        //获取更新后的DataSource
         selectThemeController.setUpdateDataSourceClosure { (dataSource) in
             DataSourceTools.displayDataSource(dataSource: dataSource)
             self.dataSource = dataSource
         }
+        
         self.present(selectThemeController, animated: true) {}
     }
-    
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }
