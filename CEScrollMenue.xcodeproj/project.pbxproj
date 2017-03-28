@@ -88,10 +88,10 @@
 		F4A5AED91E8A529900DFDF2A /* CESelectTheme */ = {
 			isa = PBXGroup;
 			children = (
-				F4A5AEEB1E8A591C00DFDF2A /* DataSourceTools.swift */,
 				F4A5AEDB1E8A529900DFDF2A /* CESelectThemeViews */,
-				F4A5AEDA1E8A529900DFDF2A /* CESelectThemeController.swift */,
+				F4A5AEEB1E8A591C00DFDF2A /* DataSourceTools.swift */,
 				F4A5AEEF1E8A658C00DFDF2A /* CEThemeDataSourceProtocal.swift */,
+				F4A5AEDA1E8A529900DFDF2A /* CESelectThemeController.swift */,
 			);
 			path = CESelectTheme;
 			sourceTree = "<group>";

@@ -17,6 +17,7 @@ class MeteData: CEThemeDataSourceProtocal {
         return self.name
     }
 }
+
 class DataSourceTools: NSObject {
     class func createDataSource() -> Array<Array<CEThemeDataSourceProtocal>> {
         var dataSource = Array<Array<CEThemeDataSourceProtocal>>()
@@ -28,5 +29,15 @@ class DataSourceTools: NSObject {
             dataSource.append(subArray)
         }
         return dataSource
+    }
+    
+    class func displayDataSource(dataSource: Array<Array<CEThemeDataSourceProtocal>>) {
+        for items in dataSource {
+            print("======Section=======")
+            for item in items {
+                print(item.menuItemName())
+            }
+            print("\n\n")
+        }
     }
 }

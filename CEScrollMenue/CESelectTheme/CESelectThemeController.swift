@@ -11,12 +11,15 @@ import UIKit
 let SCREEN_WIDTH = UIScreen.main.bounds.width
 let SCREEN_HEIGHT = UIScreen.main.bounds.height
 let SelectThemeBackgroundColor = UIColor(red: 235/255, green: 235/255, blue: 235/255, alpha: 1)
+typealias UpdataDataSourceClosure = (Array<Array<CEThemeDataSourceProtocal>>!) -> Void
 
 class CESelectThemeController: UIViewController, UICollectionViewDataSource{
     
     var themeCollectionView: CEThemeCollectionView!
     var dataSource: Array<Array<CEThemeDataSourceProtocal>>!
     var isEdit: Bool = false
+    var dataSourceClosure: UpdataDataSourceClosure!
+    
     
     var themeCollectionViewWidth: CGFloat {
         get {
@@ -43,6 +46,10 @@ class CESelectThemeController: UIViewController, UICollectionViewDataSource{
         self.view.backgroundColor = SelectThemeBackgroundColor
         self.addCloseButton()
         self.addThemeCollectionView()
+    }
+    
+    func setUpdateDataSourceClosure(closure: @escaping UpdataDataSourceClosure) {
+        self.dataSourceClosure = closure
     }
     
     func addCloseButton() {
@@ -92,6 +99,9 @@ class CESelectThemeController: UIViewController, UICollectionViewDataSource{
     
     // MARK: - Event Response
     func tapCloseButton(sender: UIButton) {
+        if self.dataSourceClosure != nil {
+            self.dataSourceClosure(self.dataSource)
+        }
         self.dismiss(animated: true) {}
     }
     

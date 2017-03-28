@@ -10,12 +10,11 @@ import UIKit
 
 class ViewController: UIViewController {
 
-    var selectThemeController: CESelectThemeController!
     
+    var dataSource: Array<Array<CEThemeDataSourceProtocal>>!
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        self.selectThemeController = CESelectThemeController(dataSource: DataSourceTools.createDataSource())
+        self.dataSource = DataSourceTools.createDataSource()
     }
 
     override func didReceiveMemoryWarning() {
@@ -24,6 +23,10 @@ class ViewController: UIViewController {
     }
     
     @IBAction func tapButton(_ sender: Any) {
+        let selectThemeController = CESelectThemeController(dataSource: self.dataSource)
+        selectThemeController.setUpdateDataSourceClosure { (dataSource) in
+            DataSourceTools.displayDataSource(dataSource: dataSource)
+        }
         self.present(selectThemeController, animated: true) {}
     }
     
