@@ -9,14 +9,28 @@
 import UIKit
 
 class CEThemeCollectionViewCell: UICollectionViewCell {
+    
     var textLabel: CEThemeLabel!
+    var editTagImageView: UIImageView!
     override init(frame: CGRect) {
         super.init(frame: frame)
         if textLabel == nil {
             textLabel = CEThemeLabel(frame: self.contentView.bounds)
             self.contentView.addSubview(textLabel)
         }
-        self.backgroundView = UIImageView(image: #imageLiteral(resourceName: "cell_background"))
+        self.backgroundView = UIImageView(image: UIImage(named: "cell_background"))
+        self.addImageView()
+    }
+    
+    func addImageView() {
+        self.editTagImageView = UIImageView(frame: CGRect(x: self.frame.width - 5, y: -5, width: 10, height: 10))
+        self.editTagImageView.image = UIImage(named: "feedback_delete_image_icon")
+        self.isHiddenEditImageView(isHidden: true)
+        self.addSubview(self.editTagImageView)
+    }
+    
+    func isHiddenEditImageView(isHidden: Bool) {
+        self.editTagImageView.isHidden = isHidden
     }
     
     required init?(coder aDecoder: NSCoder) {

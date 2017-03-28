@@ -9,12 +9,14 @@
 import UIKit
 
 class CEThemeCollectionView: UICollectionView, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
+    
     var moveCell: UICollectionViewCell!
     var moveView: UIView!
     var gestureRecognizer: UILongPressGestureRecognizer!
     let normalCellSize = CGSize(width: (SCREEN_WIDTH - 45) / 4, height: 40)
     let bigCellSize = CGSize(width: 110, height: 50)
     let minimumLineAndInteritemSpacingForSection: CGFloat = 5
+    
     
     override init(frame: CGRect, collectionViewLayout layout: UICollectionViewLayout) {
         super.init(frame: frame, collectionViewLayout: layout)

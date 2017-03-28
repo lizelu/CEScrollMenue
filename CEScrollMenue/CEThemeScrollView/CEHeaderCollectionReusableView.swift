@@ -12,7 +12,6 @@ class CEHeaderCollectionReusableView: UICollectionReusableView {
     
     var titleLabel: UILabel!
     var editButton: CEThemeEditButton!
-    var isHiddenEditeButton: Bool = true
     var editButtonClosure: TapEditButtonClosure!
     
     override init(frame: CGRect) {
@@ -24,6 +23,7 @@ class CEHeaderCollectionReusableView: UICollectionReusableView {
         
         self.editButton = CEThemeEditButton(frame: CGRect(x: self.frame.width - 55, y: 30, width: 40, height: 25))
         self.editButton.addTarget(self, action: #selector(tapEditButton(sender:)), for: .touchUpInside)
+        self.editButton.isHidden = true
         self.addSubview(self.editButton)
         
     }
@@ -32,14 +32,15 @@ class CEHeaderCollectionReusableView: UICollectionReusableView {
         self.editButtonClosure = editButtonClosure
     }
     
-    override func layoutSubviews() {
-        self.editButton.isHidden = isHiddenEditeButton
+    func setHiddenEditeButton(isHidden: Bool) {
+        self.editButton.isHidden = isHidden
     }
     
     func tapEditButton(sender: CEThemeEditButton) {
-        sender.isSelected = !sender.isSelected
+        editButton.isSelected = !editButton.isSelected
+        print(editButton.isSelected)
         if editButtonClosure != nil {
-            self.editButtonClosure(sender.isSelected)
+            self.editButtonClosure(editButton.isSelected)
         }
     }
     
