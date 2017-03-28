@@ -21,7 +21,8 @@ class ViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     @IBAction func tapButton(_ sender: Any) {
-        self.navigationController?.pushViewController(CESelectThemeController(), animated: true)
+        self.present(CESelectThemeController(), animated: true) { 
+        }
     }
     
 

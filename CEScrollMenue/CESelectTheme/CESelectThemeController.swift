@@ -35,13 +35,25 @@ class CESelectThemeController: UIViewController, UICollectionViewDataSource{
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.backgroundColor = UIColor(red: 235/255, green: 235/255, blue: 235/255, alpha: 1)
+        self.addCloseButton()
         self.dataSource = createDataSource()
         self.addThemeCollectionView()
     }
     
+    func addCloseButton() {
+        let closeButton = CECloseButton(frame: CGRect(x: SCREEN_WIDTH - 70, y: 30, width: 50, height: 30))
+        closeButton.addTarget(self, action: #selector(tapCloseButton(sender:)), for: .touchUpInside)
+        self.view.addSubview(closeButton)
+    }
+    
+    func tapCloseButton(sender: UIButton) {
+        self.dismiss(animated: true) {
+        }
+    }
+    
     ///添加选择主题的View
     func addThemeCollectionView() {
-        self.themeCollectionView = CEThemeCollectionView(frame: CGRect(x: 0, y: 30, width:themeCollectionViewWidth,  height: themeCollectionViewHeight), collectionViewLayout: UICollectionViewFlowLayout())
+        self.themeCollectionView = CEThemeCollectionView(frame: CGRect(x: 0, y: 60, width:themeCollectionViewWidth,  height: themeCollectionViewHeight), collectionViewLayout: UICollectionViewFlowLayout())
         self.themeCollectionView.dataSource = self
 
         self.view.addSubview(self.themeCollectionView)
