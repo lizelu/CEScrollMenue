@@ -10,19 +10,21 @@ import UIKit
 
 class ViewController: UIViewController {
 
+    var selectThemeController: CESelectThemeController!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
+        self.selectThemeController = CESelectThemeController(dataSource: DataSourceTools.createDataSource())
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    
     @IBAction func tapButton(_ sender: Any) {
-        self.present(CESelectThemeController(), animated: true) { 
-        }
+        self.present(selectThemeController, animated: true) {}
     }
     
 

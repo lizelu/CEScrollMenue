@@ -8,6 +8,10 @@
 
 import UIKit
 
+let reuseIdentifier = "CEThemeCollectionViewCell"
+let headerReuseIdentifier = "CEHeaderCollectionReusableView"
+let firstSectionheaderReuseIdentifier = "CEFirstHeaderCollectionReusableView"
+
 class CEThemeCollectionView: UICollectionView, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
     
     var moveCell: UICollectionViewCell!
@@ -27,6 +31,7 @@ class CEThemeCollectionView: UICollectionView, UICollectionViewDelegate, UIColle
     func config() {
         self.register(CEThemeCollectionViewCell.classForCoder(), forCellWithReuseIdentifier: reuseIdentifier)
         self.register(CEHeaderCollectionReusableView.classForCoder(), forSupplementaryViewOfKind: UICollectionElementKindSectionHeader, withReuseIdentifier: headerReuseIdentifier)
+        self.register(CEFirstHeaderCollectionReusableView.classForCoder(), forSupplementaryViewOfKind: UICollectionElementKindSectionHeader, withReuseIdentifier: firstSectionheaderReuseIdentifier)
         self.backgroundColor = UIColor.clear
         self.isScrollEnabled = true
         self.delegate = self

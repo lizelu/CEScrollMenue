@@ -8,44 +8,14 @@
 
 import UIKit
 
-let reuseIdentifier = "CEThemeCollectionViewCell"
-let headerReuseIdentifier = "CEHeaderCollectionReusableView"
 let SCREEN_WIDTH = UIScreen.main.bounds.width
 let SCREEN_HEIGHT = UIScreen.main.bounds.height
 let SelectThemeBackgroundColor = UIColor(red: 235/255, green: 235/255, blue: 235/255, alpha: 1)
 
-
-enum SectionType: Int {
-    case FirstSection = 0
-    case SecondSection = 1
-    
-    var title: String {
-        get {
-            switch self {
-            case .FirstSection:
-                return "我的频道"
-            case .SecondSection:
-                return "推荐频道"
-            }
-        }
-    }
-    
-    var isHiddenEdietButton: Bool {
-        get {
-            switch self {
-            case .FirstSection:
-                return false
-            case .SecondSection:
-                return true
-            }
-        }
-    }
-}
-
 class CESelectThemeController: UIViewController, UICollectionViewDataSource{
     
     var themeCollectionView: CEThemeCollectionView!
-    var dataSource: Array<Array<String>>!
+    var dataSource: Array<Array<CEThemeDataSourceProtocal>>!
     var isEdit: Bool = false
     
     var themeCollectionViewWidth: CGFloat {
@@ -59,12 +29,19 @@ class CESelectThemeController: UIViewController, UICollectionViewDataSource{
             return SCREEN_HEIGHT - 30
         }
     }
+    init(dataSource: Array<Array<CEThemeDataSourceProtocal>>) {
+        super.init(nibName: nil, bundle: nil)
+        self.dataSource = dataSource
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.backgroundColor = SelectThemeBackgroundColor
         self.addCloseButton()
-        self.dataSource = Tools.createDataSource()
         self.addThemeCollectionView()
     }
     
@@ -97,6 +74,9 @@ class CESelectThemeController: UIViewController, UICollectionViewDataSource{
     }
 
     func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
+        if indexPath.section == 0 {
+            return fetchCEFirstHeaderCollectionReusableView(indexPath: indexPath, kind: kind)
+        }
         return fetchCEHeaderCollectionReusableView(indexPath: indexPath, kind: kind)
     }
     
@@ -131,15 +111,10 @@ class CESelectThemeController: UIViewController, UICollectionViewDataSource{
 
     
     // MARK: - private method
-    func fetchCEHeaderCollectionReusableView(indexPath: IndexPath, kind: String) -> CEHeaderCollectionReusableView {
-        let headerView: CEHeaderCollectionReusableView = self.themeCollectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: headerReuseIdentifier, for: indexPath) as! CEHeaderCollectionReusableView
+    func fetchCEFirstHeaderCollectionReusableView(indexPath: IndexPath, kind: String) -> CEHeaderCollectionReusableView {
+        let headerView: CEFirstHeaderCollectionReusableView = self.themeCollectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: firstSectionheaderReuseIdentifier, for: indexPath) as! CEFirstHeaderCollectionReusableView
         headerView.editButton.isSelected = self.isEdit
-        
-        if let sectionType = SectionType.init(rawValue: indexPath.section) {
-            headerView.titleLabel.text = sectionType.title
-            headerView.setHiddenEditeButton(isHidden: sectionType.isHiddenEdietButton)
-        }
-        
+        headerView.titleLabel.text = "我的频道"
         weak var weak_self = self
         headerView.setTapEditButtonClosure { (isEdit) in
             weak_self?.isEdit = isEdit
@@ -150,9 +125,20 @@ class CESelectThemeController: UIViewController, UICollectionViewDataSource{
         return headerView
     }
     
+    func fetchCEHeaderCollectionReusableView(indexPath: IndexPath, kind: String) -> CEHeaderCollectionReusableView {
+        let headerView: CEHeaderCollectionReusableView = self.themeCollectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: headerReuseIdentifier, for: indexPath) as! CEHeaderCollectionReusableView
+        headerView.titleLabel.text = "推荐频道"
+        return headerView
+    }
+
+    
+    
+    
     func fetchCEThemeCollectionViewCell(indexPath: IndexPath ) -> CEThemeCollectionViewCell {
         let cell: CEThemeCollectionViewCell = self.themeCollectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as! CEThemeCollectionViewCell
-        cell.textLabel.text = dataSource[indexPath.section][indexPath.row]
+        
+        let item = dataSource[indexPath.section][indexPath.row] as CEThemeDataSourceProtocal
+        cell.textLabel.text = item.menuItemName()
         
         if indexPath.section == 0 {
             cell.isHiddenEditImageView(isHidden: !self.isEdit)
