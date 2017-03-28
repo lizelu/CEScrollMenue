@@ -7,19 +7,30 @@
 //
 
 import UIKit
-
+typealias TapButtonClosure = (CEThemeCollectionViewCell) -> Void
 class CEThemeCollectionViewCell: UICollectionViewCell {
-    
     var textLabel: CEThemeLabel!
     var editTagImageView: UIImageView!
+    var tapButtonClosure: TapButtonClosure!
+    var editButton: UIButton!
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
+        self.backgroundView = UIImageView(image: UIImage(named: "cell_background"))
+        self.addTitleLabel()
+        self.addImageView()
+        self.addTapButton()
+    }
+    
+    func setTapButtonClosure(closure: @escaping TapButtonClosure) {
+        self.tapButtonClosure = closure
+    }
+    
+    func addTitleLabel() {
         if textLabel == nil {
             textLabel = CEThemeLabel(frame: self.contentView.bounds)
             self.contentView.addSubview(textLabel)
         }
-        self.backgroundView = UIImageView(image: UIImage(named: "cell_background"))
-        self.addImageView()
     }
     
     func addImageView() {
@@ -27,6 +38,19 @@ class CEThemeCollectionViewCell: UICollectionViewCell {
         self.editTagImageView.image = UIImage(named: "feedback_delete_image_icon")
         self.isHiddenEditImageView(isHidden: true)
         self.addSubview(self.editTagImageView)
+    }
+    
+    func addTapButton() {
+        editButton = UIButton(frame: self.bounds)
+        editButton.setTitle("", for: .normal)
+        editButton.addTarget(self, action: #selector(tapButton(sender:)), for: .touchUpInside)
+        self.addSubview(editButton)
+    }
+    
+    func tapButton(sender: UIButton) {
+        if self.tapButtonClosure != nil {
+            self.tapButtonClosure(self)
+        }
     }
     
     func isHiddenEditImageView(isHidden: Bool) {

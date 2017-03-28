@@ -95,12 +95,35 @@ class ViewController: UIViewController, UICollectionViewDataSource{
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell: CEThemeCollectionViewCell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as! CEThemeCollectionViewCell
         cell.textLabel.text = dataSource[indexPath.section][indexPath.row]
+        
         if indexPath.section == 0 {
             cell.isHiddenEditImageView(isHidden: !self.isEdit)
+            cell.editButton.isEnabled = self.isEdit
         } else {
             cell.isHiddenEditImageView(isHidden: true)
+            cell.editButton.isEnabled = true
         }
+        
+        weak var weak_self = self
+        cell.setTapButtonClosure { (currentCell) in
+            weak_self?.tapCellButton(cell: currentCell)
+        }
+        
         return cell;
+    }
+    
+    func tapCellButton(cell: CEThemeCollectionViewCell) {
+        guard let indexPath = themeCollectionView.indexPath(for: cell) else {
+            return
+        }
+        
+        let moveItem = self.dataSource[indexPath.section].remove(at: indexPath.row)
+        if indexPath.section == 0 {
+            self.dataSource[1].insert(moveItem, at: 0)
+        } else {
+            self.dataSource[0].append(moveItem)
+        }
+        self.themeCollectionView.reloadData()
     }
     
     func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
