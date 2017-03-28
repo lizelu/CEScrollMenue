@@ -13,6 +13,33 @@ let headerReuseIdentifier = "CEHeaderCollectionReusableView"
 let SCREEN_WIDTH = UIScreen.main.bounds.width
 let SCREEN_HEIGHT = UIScreen.main.bounds.height
 
+enum SectionType: Int {
+    case FirstSection = 0
+    case SecondSection = 1
+    
+    var title: String {
+        get {
+            switch self {
+            case .FirstSection:
+                return "我的频道"
+            case .SecondSection:
+                return "推荐频道"
+            }
+        }
+    }
+    
+    var isHiddenEdietButton: Bool {
+        get {
+            switch self {
+            case .FirstSection:
+                return false
+            case .SecondSection:
+                return true
+            }
+        }
+    }
+}
+
 class CESelectThemeController: UIViewController, UICollectionViewDataSource{
     
     var themeCollectionView: CEThemeCollectionView!
@@ -60,34 +87,13 @@ class CESelectThemeController: UIViewController, UICollectionViewDataSource{
     }
     
     
-    /// 同一个Section中进行交换
-    ///
-    /// - Parameters:
-    ///   - at: <#at description#>
-    ///   - to: <#to description#>
-    func swap(at: IndexPath, to: IndexPath) {
-        let temp = self.dataSource[at.section][at.row]
-        self.dataSource[at.section][at.row] = self.dataSource[to.section][to.row]
-        self.dataSource[to.section][to.row] = temp
-    }
-    
-    
-    /// 不同的Section中进行更新
-    ///
-    /// - Parameters:
-    ///   - at: <#at description#>
-    ///   - to: <#to description#>
-    func updateDataSource(at: IndexPath, to: IndexPath) {
-        let removeItem = self.dataSource[at.section].remove(at: at.row)
-        self.dataSource[to.section].insert(removeItem, at: 0)
-    }
     
     func createDataSource() -> Array<Array<String>> {
         var dataSource = Array<Array<String>>()
         for i in 0..<2 {
             var subArray = Array<String>()
             for j in 0..<15 {
-                subArray.append("菜单\(i)-\(j)")
+                subArray.append("频道\(i)-\(j)")
             }
             dataSource.append(subArray)
         }
@@ -140,14 +146,13 @@ class CESelectThemeController: UIViewController, UICollectionViewDataSource{
     }
     
     func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
+        
         let headerView: CEHeaderCollectionReusableView = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: headerReuseIdentifier, for: indexPath) as! CEHeaderCollectionReusableView
         headerView.editButton.isSelected = self.isEdit
-        if indexPath.section == 0 {
-            headerView.titleLabel.text = "我的频道"
-            headerView.setHiddenEditeButton(isHidden: false)
-        } else {
-            headerView.titleLabel.text = "推荐频道"
-            headerView.setHiddenEditeButton(isHidden: true)
+        
+        if let sectionType = SectionType.init(rawValue: indexPath.section) {
+            headerView.titleLabel.text = sectionType.title
+            headerView.setHiddenEditeButton(isHidden: sectionType.isHiddenEdietButton)
         }
         
         weak var weak_self = self
@@ -169,6 +174,17 @@ class CESelectThemeController: UIViewController, UICollectionViewDataSource{
         self.updateDataSource(at: sourceIndexPath, to: destinationIndexPath)
         self.themeCollectionView.reloadData()
     }
+    
+    /// 不同的Section中进行更新
+    ///
+    /// - Parameters:
+    ///   - at: <#at description#>
+    ///   - to: <#to description#>
+    func updateDataSource(at: IndexPath, to: IndexPath) {
+        let removeItem = self.dataSource[at.section].remove(at: at.row)
+        self.dataSource[to.section].insert(removeItem, at: 0)
+    }
+
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
