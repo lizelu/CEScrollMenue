@@ -18,11 +18,11 @@ class CEHeaderCollectionReusableView: UICollectionReusableView {
     override init(frame: CGRect) {
         super.init(frame: frame)
         self.backgroundColor = UIColor.clear
-        self.titleLabel = UILabel(frame: CGRect(x: 30, y: 30, width: 200, height: 20))
+        self.titleLabel = UILabel(frame: CGRect(x: 15, y: 30, width: 200, height: 20))
         self.titleLabel.font = UIFont.boldSystemFont(ofSize: 15)
         self.addSubview(titleLabel)
         
-        self.editButton = CEThemeEditButton(frame: CGRect(x: self.frame.width - 70, y: 30, width: 40, height: 25))
+        self.editButton = CEThemeEditButton(frame: CGRect(x: self.frame.width - 55, y: 30, width: 40, height: 25))
         self.editButton.addTarget(self, action: #selector(tapEditButton(sender:)), for: .touchUpInside)
         self.addSubview(self.editButton)
         

@@ -43,14 +43,6 @@ class ViewController: UIViewController, UICollectionViewDataSource{
         self.themeCollectionView.dataSource = self
 
         self.view.addSubview(self.themeCollectionView)
-        
-        weak var weak_self = self
-        self.themeCollectionView.setSwapDataSource { (at, to) in
-            weak_self?.swap(at: at, to: to)
-        }
-        self.themeCollectionView.setUpdataDataSource { (at, to) in
-            weak_self?.updateDataSource(at: at, to: to)
-        }
     }
     
     
