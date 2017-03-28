@@ -26,6 +26,7 @@ class ViewController: UIViewController {
         let selectThemeController = CESelectThemeController(dataSource: self.dataSource)
         selectThemeController.setUpdateDataSourceClosure { (dataSource) in
             DataSourceTools.displayDataSource(dataSource: dataSource)
+            self.dataSource = dataSource
         }
         self.present(selectThemeController, animated: true) {}
     }
