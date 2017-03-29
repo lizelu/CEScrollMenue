@@ -28,7 +28,7 @@ class CEMenuViewController: UIViewController, UICollectionViewDataSource {
         super.viewDidLoad()
         self.view.backgroundColor = UIColor.white
         self.automaticallyAdjustsScrollViewInsets = false
-        self.menueCollectionView = CEMenuCollectionView(frame: CGRect(x: 0, y: 100, width: SCREEN_WIDTH, height: 50),
+        self.menueCollectionView = CEMenuCollectionView(frame: CGRect(x: 0, y: 60, width: SCREEN_WIDTH, height: 35),
                                                         data: dataSource[0])
         self.menueCollectionView.dataSource = self
         self.view.addSubview(self.menueCollectionView)

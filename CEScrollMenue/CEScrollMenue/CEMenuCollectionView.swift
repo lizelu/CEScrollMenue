@@ -10,8 +10,7 @@ import UIKit
 let MenuCellReuseIdentifier = "CEMenuCollectionViewCell"
 class CEMenuCollectionView: UICollectionView, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
     
-    let normalCellSize = CGSize(width: 60, height: 40)
-    let minimumLineAndInteritemSpacingForSection: CGFloat = 3
+    let minimumLineAndInteritemSpacingForSection: CGFloat = 10
     var data: Array<CEThemeDataSourceProtocal>!
     
     init(frame: CGRect, data: Array<CEThemeDataSourceProtocal>) {
@@ -40,7 +39,7 @@ class CEMenuCollectionView: UICollectionView, UICollectionViewDelegate, UICollec
         return minimumLineAndInteritemSpacingForSection
     }
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-        return minimumLineAndInteritemSpacingForSection
+        return 0
     }
     
     

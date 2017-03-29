@@ -27,8 +27,8 @@ class MeteData: CEThemeDataSourceProtocal {
     func calculateContentWidth(contentText: String) -> CGFloat {
         let maxLabelSize: CGSize = CGSize(width: 1000, height: 0)
         let contentNSString = contentText as NSString
-        let rect = contentNSString.boundingRect(with: maxLabelSize, options: .usesLineFragmentOrigin, attributes: [NSFontAttributeName : UIFont.systemFont(ofSize: 15)], context: nil)
-        return rect.size.width + 5
+        let rect = contentNSString.boundingRect(with: maxLabelSize, options: .usesLineFragmentOrigin, attributes: [NSFontAttributeName : UIFont.systemFont(ofSize: 13)], context: nil)
+        return rect.size.width
 
     }
 }

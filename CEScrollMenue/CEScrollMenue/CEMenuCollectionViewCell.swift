@@ -15,15 +15,14 @@ class CEMenuCollectionViewCell: UICollectionViewCell {
     override init(frame: CGRect) {
         super.init(frame: frame)
         self.backgroundColor = UIColor.red
+        self.clipsToBounds = true
         addMenuLabel()
     }
     
     func addMenuLabel() {
-        self.menuLabel = UILabel(frame: self.contentView.bounds)
+        self.menuLabel = UILabel(frame: CGRect(x: 0, y: 0, width: 300, height: self.frame.height))
         self.menuLabel.textColor = UIColor.white
-        self.menuLabel.backgroundColor = UIColor.black
         self.menuLabel.font = UIFont.systemFont(ofSize: 13)
-        self.menuLabel.textAlignment = .center
         self.contentView.addSubview(menuLabel)
     }
     
