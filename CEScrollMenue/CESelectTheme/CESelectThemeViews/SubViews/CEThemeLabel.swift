@@ -16,6 +16,7 @@ class CEThemeLabel: UILabel {
         self.textAlignment = .center
         self.font = UIFont.systemFont(ofSize: 14)
         self.minimumScaleFactor = 0.5
+        self.adjustsFontSizeToFitWidth = true
     }
     
     required init?(coder aDecoder: NSCoder) {

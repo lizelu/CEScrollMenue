@@ -10,8 +10,10 @@ import UIKit
 
 class MeteData: CEThemeDataSourceProtocal {
     var name: String = ""
+    var width: Float = 30
     init(name: String) {
         self.name = name
+        self.width = Float(calculateContentWidth(contentText: self.name))
     }
     
     func menuItemName() -> String {
@@ -19,15 +21,15 @@ class MeteData: CEThemeDataSourceProtocal {
     }
     
     func itemWidth() -> Float {
-       return Float(calculateContentWidth(contentText: self.name))
+       return self.width
     }
     
     func calculateContentWidth(contentText: String) -> CGFloat {
-        let maxLabelSize: CGSize = CGSize(width: 1000, height: 30)
+        let maxLabelSize: CGSize = CGSize(width: 1000, height: 0)
         let contentNSString = contentText as NSString
         let rect = contentNSString.boundingRect(with: maxLabelSize, options: .usesLineFragmentOrigin, attributes: [NSFontAttributeName : UIFont.systemFont(ofSize: 15)], context: nil)
-    
-        return rect.size.width
+        return rect.size.width + 5
+
     }
 }
 
@@ -37,7 +39,12 @@ class DataSourceTools: NSObject {
         for i in 0..<2 {
             var subArray = Array<CEThemeDataSourceProtocal>()
             for j in 0..<15 {
-                subArray.append(MeteData(name: "频道\(i)-\(j)"))
+                if j % 3 == 0 {
+                    subArray.append(MeteData(name: "特选频道\(i)-\(j)"))
+                } else {
+                    subArray.append(MeteData(name: "频道\(i)-\(j)"))
+                }
+                
             }
             dataSource.append(subArray)
         }

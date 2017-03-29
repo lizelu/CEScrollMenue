@@ -14,15 +14,17 @@ class CEMenuCollectionViewCell: UICollectionViewCell {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
+        self.backgroundColor = UIColor.red
         addMenuLabel()
     }
     
     func addMenuLabel() {
-        self.menuLabel = UILabel(frame: self.bounds)
+        self.menuLabel = UILabel(frame: self.contentView.bounds)
         self.menuLabel.textColor = UIColor.white
-        self.menuLabel.font = UIFont.systemFont(ofSize: 15)
+        self.menuLabel.backgroundColor = UIColor.black
+        self.menuLabel.font = UIFont.systemFont(ofSize: 13)
         self.menuLabel.textAlignment = .center
-        self.addSubview(menuLabel)
+        self.contentView.addSubview(menuLabel)
     }
     
     func setMenu(text: String) {

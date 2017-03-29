@@ -35,17 +35,17 @@ class CEThemeCollectionViewCell: UICollectionViewCell {
     }
     
     func addImageView() {
-        self.editTagImageView = UIImageView(frame: CGRect(x: self.frame.width - 5, y: -5, width: 10, height: 10))
+        self.editTagImageView = UIImageView(frame: CGRect(x: self.frame.width - 10, y: 0, width: 10, height: 10))
         self.editTagImageView.image = UIImage(named: "feedback_delete_image_icon")
         self.isHiddenEditImageView(isHidden: true)
         self.addSubview(self.editTagImageView)
     }
     
     func addTapButton() {
-        editButton = UIButton(frame: self.bounds)
+        editButton = UIButton(frame: self.contentView.bounds)
         editButton.setTitle("", for: .normal)
         editButton.addTarget(self, action: #selector(tapButton(sender:)), for: .touchUpInside)
-        self.addSubview(editButton)
+        self.contentView.addSubview(editButton)
     }
     
     func tapButton(sender: UIButton) {

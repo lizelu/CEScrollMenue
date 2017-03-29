@@ -11,18 +11,19 @@ let MenuCellReuseIdentifier = "CEMenuCollectionViewCell"
 class CEMenuCollectionView: UICollectionView, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
     
     let normalCellSize = CGSize(width: 60, height: 40)
-    let minimumLineAndInteritemSpacingForSection: CGFloat = 2
+    let minimumLineAndInteritemSpacingForSection: CGFloat = 3
     var data: Array<CEThemeDataSourceProtocal>!
     
     init(frame: CGRect, data: Array<CEThemeDataSourceProtocal>) {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .horizontal
         super.init(frame: frame, collectionViewLayout: layout)
-        self.register(CEMenuCollectionViewCell.classForCoder(), forCellWithReuseIdentifier: MenuCellReuseIdentifier)
         self.data = data
+        self.register(CEMenuCollectionViewCell.classForCoder(), forCellWithReuseIdentifier: MenuCellReuseIdentifier)
         self.backgroundColor = UIColor.gray
         self.isScrollEnabled = true
         self.delegate = self
+        self.showsHorizontalScrollIndicator = false
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -31,12 +32,17 @@ class CEMenuCollectionView: UICollectionView, UICollectionViewDelegate, UICollec
     
     /// 改变Cell的尺寸
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        print(self.data[indexPath.section].itemWidth())
-        return CGSize(width: 60, height: collectionView.frame.height)
+        print(CGFloat(self.data[indexPath.row].itemWidth()))
+        return CGSize(width:CGFloat(self.data[indexPath.row].itemWidth())  , height: 30)
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
         return minimumLineAndInteritemSpacingForSection
     }
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+        return minimumLineAndInteritemSpacingForSection
+    }
+    
+    
 
 }

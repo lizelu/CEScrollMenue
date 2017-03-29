@@ -27,12 +27,32 @@ class CEMenuViewController: UIViewController, UICollectionViewDataSource {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.backgroundColor = UIColor.white
-        self.menueCollectionView = CEMenuCollectionView(frame: CGRect(x: 0, y: 100, width: SCREEN_WIDTH, height: 150),
+        self.automaticallyAdjustsScrollViewInsets = false
+        self.menueCollectionView = CEMenuCollectionView(frame: CGRect(x: 0, y: 100, width: SCREEN_WIDTH, height: 50),
                                                         data: dataSource[0])
         self.menueCollectionView.dataSource = self
         self.view.addSubview(self.menueCollectionView)
+        
+        let button = UIButton(frame: CGRect(x: 30, y: 300, width: 60, height: 50))
+        button.setTitle("Select", for: .normal)
+        button.addTarget(self, action: #selector(showSelectMenu(sender:)), for: .touchUpInside)
+        button.setTitleColor(UIColor.red, for: .normal)
+        self.view.addSubview(button)
     }
 
+    func showSelectMenu(sender: UIButton) {
+        let selectThemeController = CESelectThemeController(dataSource: self.dataSource)
+        
+        //获取更新后的DataSource
+        selectThemeController.setUpdateDataSourceClosure { (dataSource) in
+            DataSourceTools.displayDataSource(dataSource: dataSource)
+            self.dataSource = dataSource
+            self.menueCollectionView.data = self.dataSource[0]
+            self.menueCollectionView.reloadData()
+        }
+        
+        self.present(selectThemeController, animated: true) {}
+    }
     
     // Mark: - UICollectionViewDataSource
     
