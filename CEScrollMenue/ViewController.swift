@@ -11,7 +11,7 @@ import UIKit
 class ViewController: UIViewController {
 
     
-    var dataSource: Array<Array<CEThemeDataSourceProtocal>>!
+    var dataSource: DataSourceType!
     override func viewDidLoad() {
         super.viewDidLoad()
         self.dataSource = DataSourceTools.createDataSource()
@@ -31,5 +31,10 @@ class ViewController: UIViewController {
         }
         
         self.present(selectThemeController, animated: true) {}
+    }
+    
+    @IBAction func tapShowMenuButton(_ sender: UIButton) {
+        let menuVC = CEMenuViewController(dataSource: self.dataSource)
+        self.navigationController?.pushViewController(menuVC, animated: true)
     }
 }

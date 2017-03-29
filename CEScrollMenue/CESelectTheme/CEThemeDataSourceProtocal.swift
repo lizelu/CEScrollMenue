@@ -9,4 +9,5 @@
 import Foundation
 protocol CEThemeDataSourceProtocal {
     func menuItemName() -> String
+    func itemWidth() -> Float
 }

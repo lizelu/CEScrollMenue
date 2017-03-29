@@ -6,7 +6,7 @@
 //  Copyright © 2017年 ZeluLi. All rights reserved.
 //
 
-import Foundation
+import UIKit
 
 class MeteData: CEThemeDataSourceProtocal {
     var name: String = ""
@@ -17,10 +17,22 @@ class MeteData: CEThemeDataSourceProtocal {
     func menuItemName() -> String {
         return self.name
     }
+    
+    func itemWidth() -> Float {
+       return Float(calculateContentWidth(contentText: self.name))
+    }
+    
+    func calculateContentWidth(contentText: String) -> CGFloat {
+        let maxLabelSize: CGSize = CGSize(width: 1000, height: 30)
+        let contentNSString = contentText as NSString
+        let rect = contentNSString.boundingRect(with: maxLabelSize, options: .usesLineFragmentOrigin, attributes: [NSFontAttributeName : UIFont.systemFont(ofSize: 15)], context: nil)
+    
+        return rect.size.width
+    }
 }
 
 class DataSourceTools: NSObject {
-    class func createDataSource() -> Array<Array<CEThemeDataSourceProtocal>> {
+    class func createDataSource() -> DataSourceType {
         var dataSource = Array<Array<CEThemeDataSourceProtocal>>()
         for i in 0..<2 {
             var subArray = Array<CEThemeDataSourceProtocal>()
@@ -32,7 +44,7 @@ class DataSourceTools: NSObject {
         return dataSource
     }
     
-    class func displayDataSource(dataSource: Array<Array<CEThemeDataSourceProtocal>>) {
+    class func displayDataSource(dataSource: DataSourceType) {
         for items in dataSource {
             print("======Section=======")
             for item in items {

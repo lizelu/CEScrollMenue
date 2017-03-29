@@ -4,7 +4,6 @@
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -27,6 +26,14 @@
                                 <state key="normal" title="showSelectTheme"/>
                                 <connections>
                                     <action selector="tapButton:" destination="1Zz-s4-0Rt" eventType="touchUpInside" id="mwO-sm-PXg"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2He-p7-exJ">
+                                <rect key="frame" x="19" y="218" width="123" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Show Menu Scroll"/>
+                                <connections>
+                                    <action selector="tapShowMenuButton:" destination="1Zz-s4-0Rt" eventType="touchUpInside" id="kj7-sY-DZA"/>
                                 </connections>
                             </button>
                         </subviews>
