@@ -6,7 +6,8 @@
 //  Copyright © 2017年 ZeluLi. All rights reserved.
 //
 
-import UIKit
+import Foundation
+
 class MeteData: CEThemeDataSourceProtocal {
     var name: String = ""
     init(name: String) {
@@ -40,4 +41,6 @@ class DataSourceTools: NSObject {
             print("\n\n")
         }
     }
+    
+    
 }

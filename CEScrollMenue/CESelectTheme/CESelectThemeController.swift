@@ -11,6 +11,7 @@ import UIKit
 let SCREEN_WIDTH = UIScreen.main.bounds.width
 let SCREEN_HEIGHT = UIScreen.main.bounds.height
 let SelectThemeBackgroundColor = UIColor(red: 235/255, green: 235/255, blue: 235/255, alpha: 1)
+
 typealias UpdataDataSourceClosure = (Array<Array<CEThemeDataSourceProtocal>>!) -> Void
 
 class CESelectThemeController: UIViewController, UICollectionViewDataSource{
@@ -19,7 +20,6 @@ class CESelectThemeController: UIViewController, UICollectionViewDataSource{
     var dataSource: Array<Array<CEThemeDataSourceProtocal>>!
     var isEdit: Bool = false
     var dataSourceClosure: UpdataDataSourceClosure!
-    
     
     var themeCollectionViewWidth: CGFloat {
         get {
@@ -32,6 +32,7 @@ class CESelectThemeController: UIViewController, UICollectionViewDataSource{
             return SCREEN_HEIGHT - 30
         }
     }
+    
     init(dataSource: Array<Array<CEThemeDataSourceProtocal>>) {
         super.init(nibName: nil, bundle: nil)
         self.dataSource = dataSource
@@ -68,18 +69,22 @@ class CESelectThemeController: UIViewController, UICollectionViewDataSource{
     
     // Mark: - UICollectionViewDataSource
     
+    ///返回Section的个数
     func numberOfSections(in collectionView: UICollectionView) -> Int {
         return self.dataSource.count
     }
     
+    ///返回每个Section中Item的个数
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return self.dataSource[section].count
     }
     
+    ///返回相应的Cell
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         return fetchCEThemeCollectionViewCell(indexPath: indexPath)
     }
 
+    ///返回Section的HeaderView
     func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
         if indexPath.section == 0 {
             return fetchCEFirstHeaderCollectionReusableView(indexPath: indexPath, kind: kind)
@@ -87,10 +92,12 @@ class CESelectThemeController: UIViewController, UICollectionViewDataSource{
         return fetchCEHeaderCollectionReusableView(indexPath: indexPath, kind: kind)
     }
     
+    ///该indexPath所对应的Cell是否可移动
     func collectionView(_ collectionView: UICollectionView, canMoveItemAt indexPath: IndexPath) -> Bool {
         return true
     }
     
+    ///移动后更新数据源
     func collectionView(_ collectionView: UICollectionView, moveItemAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
         self.updateDataSource(at: sourceIndexPath, to: destinationIndexPath)
         self.themeCollectionView.reloadData()
@@ -98,6 +105,7 @@ class CESelectThemeController: UIViewController, UICollectionViewDataSource{
     
     
     // MARK: - Event Response
+    
     func tapCloseButton(sender: UIButton) {
         if self.dataSourceClosure != nil {
             self.dataSourceClosure(self.dataSource)
@@ -121,6 +129,7 @@ class CESelectThemeController: UIViewController, UICollectionViewDataSource{
 
     
     // MARK: - private method
+    
     func fetchCEFirstHeaderCollectionReusableView(indexPath: IndexPath, kind: String) -> CEHeaderCollectionReusableView {
         let headerView: CEFirstHeaderCollectionReusableView = self.themeCollectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: firstSectionheaderReuseIdentifier, for: indexPath) as! CEFirstHeaderCollectionReusableView
         headerView.editButton.isSelected = self.isEdit
@@ -140,9 +149,6 @@ class CESelectThemeController: UIViewController, UICollectionViewDataSource{
         headerView.titleLabel.text = "推荐频道"
         return headerView
     }
-
-    
-    
     
     func fetchCEThemeCollectionViewCell(indexPath: IndexPath ) -> CEThemeCollectionViewCell {
         let cell: CEThemeCollectionViewCell = self.themeCollectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as! CEThemeCollectionViewCell
@@ -180,5 +186,6 @@ class CESelectThemeController: UIViewController, UICollectionViewDataSource{
         print("CESelectThemeController-deinit")
     }
 
+    
 }
 

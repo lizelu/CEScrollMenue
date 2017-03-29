@@ -21,7 +21,6 @@ class CEThemeCollectionView: UICollectionView, UICollectionViewDelegate, UIColle
     let bigCellSize = CGSize(width: 110, height: 50)
     let minimumLineAndInteritemSpacingForSection: CGFloat = 5
     
-    
     override init(frame: CGRect, collectionViewLayout layout: UICollectionViewLayout) {
         super.init(frame: frame, collectionViewLayout: layout)
         self.config()
@@ -46,7 +45,7 @@ class CEThemeCollectionView: UICollectionView, UICollectionViewDelegate, UIColle
     
     func addGestureRecognizer() {
         gestureRecognizer = UILongPressGestureRecognizer(target: self, action: #selector(longPrese(gestureRecognizer:)))
-        gestureRecognizer.minimumPressDuration = 1
+        gestureRecognizer.minimumPressDuration = 0.5
         self.addGestureRecognizer(gestureRecognizer)
         self.isEnableEdit(isEditor: false)
     }
@@ -79,10 +78,10 @@ class CEThemeCollectionView: UICollectionView, UICollectionViewDelegate, UIColle
     ///
     /// - Parameter point: 长按的开始的点
     func longPressBegin(point: CGPoint) {
+        
         guard let tapIndexPath = self.indexPathForItem(at: point) else {
             return
         }
-        
         //只有第一个Section才可以进行拖动排序
         if tapIndexPath.section != 0 {
             return
@@ -100,10 +99,9 @@ class CEThemeCollectionView: UICollectionView, UICollectionViewDelegate, UIColle
         self.moveView.center = point
         self.moveView.alpha = 0.8
         self.addSubview(self.moveView)
-        UIView.animate(withDuration: 0.7, animations: {
+        UIView.animate(withDuration: 0.3, animations: {
             self.moveView.frame.size = self.bigCellSize
         })
-       
     }
     
     /// 长按后进行移动
@@ -119,7 +117,9 @@ class CEThemeCollectionView: UICollectionView, UICollectionViewDelegate, UIColle
     
     /// 长按结束
     func longPressEnd() {
+        
         self.endInteractiveMovement()
+        
         if self.moveView != nil {
             self.moveView.removeFromSuperview()
         }
@@ -136,7 +136,6 @@ class CEThemeCollectionView: UICollectionView, UICollectionViewDelegate, UIColle
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         return self.normalCellSize
     }
-    
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
         return minimumLineAndInteritemSpacingForSection
@@ -161,4 +160,6 @@ class CEThemeCollectionView: UICollectionView, UICollectionViewDelegate, UIColle
     deinit {
         print("CEThemeCollectionView-deinit")
     }
+    
+    
 }

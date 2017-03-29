@@ -7,24 +7,32 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		F42A76A51E8B92FB000E1107 /* CEFirstHeaderCollectionReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F42A769E1E8B92FB000E1107 /* CEFirstHeaderCollectionReusableView.swift */; };
+		F42A76A61E8B92FB000E1107 /* CEHeaderCollectionReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F42A769F1E8B92FB000E1107 /* CEHeaderCollectionReusableView.swift */; };
+		F42A76A71E8B92FB000E1107 /* CEThemeCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F42A76A01E8B92FB000E1107 /* CEThemeCollectionViewCell.swift */; };
+		F42A76A81E8B92FB000E1107 /* CECloseButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = F42A76A21E8B92FB000E1107 /* CECloseButton.swift */; };
+		F42A76A91E8B92FB000E1107 /* CEThemeEditButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = F42A76A31E8B92FB000E1107 /* CEThemeEditButton.swift */; };
+		F42A76AA1E8B92FB000E1107 /* CEThemeLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F42A76A41E8B92FB000E1107 /* CEThemeLabel.swift */; };
+		F42A76AD1E8B9488000E1107 /* CESelectThemeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F42A76AC1E8B9488000E1107 /* CESelectThemeViewController.swift */; };
 		F47F83301E85240F00EFCC98 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F47F832F1E85240F00EFCC98 /* AppDelegate.swift */; };
 		F47F83371E85240F00EFCC98 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F47F83361E85240F00EFCC98 /* Assets.xcassets */; };
 		F47F833A1E85240F00EFCC98 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F47F83381E85240F00EFCC98 /* LaunchScreen.storyboard */; };
 		F4A5AED81E8A509300DFDF2A /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4A5AED71E8A509300DFDF2A /* ViewController.swift */; };
 		F4A5AEE21E8A529900DFDF2A /* CESelectThemeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4A5AEDA1E8A529900DFDF2A /* CESelectThemeController.swift */; };
-		F4A5AEE31E8A529900DFDF2A /* CEFirstHeaderCollectionReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4A5AEDC1E8A529900DFDF2A /* CEFirstHeaderCollectionReusableView.swift */; };
 		F4A5AEE51E8A529900DFDF2A /* CEThemeCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4A5AEDE1E8A529900DFDF2A /* CEThemeCollectionView.swift */; };
-		F4A5AEE61E8A529900DFDF2A /* CEThemeCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4A5AEDF1E8A529900DFDF2A /* CEThemeCollectionViewCell.swift */; };
-		F4A5AEE71E8A529900DFDF2A /* CEThemeEditButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4A5AEE01E8A529900DFDF2A /* CEThemeEditButton.swift */; };
-		F4A5AEE81E8A529900DFDF2A /* CEThemeLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4A5AEE11E8A529900DFDF2A /* CEThemeLabel.swift */; };
-		F4A5AEEA1E8A551800DFDF2A /* CECloseButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4A5AEE91E8A551800DFDF2A /* CECloseButton.swift */; };
-		F4A5AEEE1E8A5FEB00DFDF2A /* CEHeaderCollectionReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4A5AEED1E8A5FEB00DFDF2A /* CEHeaderCollectionReusableView.swift */; };
 		F4A5AEF01E8A658C00DFDF2A /* CEThemeDataSourceProtocal.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4A5AEEF1E8A658C00DFDF2A /* CEThemeDataSourceProtocal.swift */; };
 		F4A5AF101E8A6D6500DFDF2A /* DataSourceTools.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4A5AF0F1E8A6D6500DFDF2A /* DataSourceTools.swift */; };
 		F4A5AF131E8A6DB000DFDF2A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F4A5AF111E8A6DB000DFDF2A /* Main.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		F42A769E1E8B92FB000E1107 /* CEFirstHeaderCollectionReusableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CEFirstHeaderCollectionReusableView.swift; sourceTree = "<group>"; };
+		F42A769F1E8B92FB000E1107 /* CEHeaderCollectionReusableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CEHeaderCollectionReusableView.swift; sourceTree = "<group>"; };
+		F42A76A01E8B92FB000E1107 /* CEThemeCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CEThemeCollectionViewCell.swift; sourceTree = "<group>"; };
+		F42A76A21E8B92FB000E1107 /* CECloseButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CECloseButton.swift; sourceTree = "<group>"; };
+		F42A76A31E8B92FB000E1107 /* CEThemeEditButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CEThemeEditButton.swift; sourceTree = "<group>"; };
+		F42A76A41E8B92FB000E1107 /* CEThemeLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CEThemeLabel.swift; sourceTree = "<group>"; };
+		F42A76AC1E8B9488000E1107 /* CESelectThemeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CESelectThemeViewController.swift; sourceTree = "<group>"; };
 		F47F832C1E85240F00EFCC98 /* CEScrollMenue.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CEScrollMenue.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F47F832F1E85240F00EFCC98 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F47F83361E85240F00EFCC98 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -32,13 +40,7 @@
 		F47F833B1E85240F00EFCC98 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F4A5AED71E8A509300DFDF2A /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		F4A5AEDA1E8A529900DFDF2A /* CESelectThemeController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CESelectThemeController.swift; sourceTree = "<group>"; };
-		F4A5AEDC1E8A529900DFDF2A /* CEFirstHeaderCollectionReusableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CEFirstHeaderCollectionReusableView.swift; sourceTree = "<group>"; };
 		F4A5AEDE1E8A529900DFDF2A /* CEThemeCollectionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CEThemeCollectionView.swift; sourceTree = "<group>"; };
-		F4A5AEDF1E8A529900DFDF2A /* CEThemeCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CEThemeCollectionViewCell.swift; sourceTree = "<group>"; };
-		F4A5AEE01E8A529900DFDF2A /* CEThemeEditButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CEThemeEditButton.swift; sourceTree = "<group>"; };
-		F4A5AEE11E8A529900DFDF2A /* CEThemeLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CEThemeLabel.swift; sourceTree = "<group>"; };
-		F4A5AEE91E8A551800DFDF2A /* CECloseButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CECloseButton.swift; sourceTree = "<group>"; };
-		F4A5AEED1E8A5FEB00DFDF2A /* CEHeaderCollectionReusableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CEHeaderCollectionReusableView.swift; sourceTree = "<group>"; };
 		F4A5AEEF1E8A658C00DFDF2A /* CEThemeDataSourceProtocal.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CEThemeDataSourceProtocal.swift; sourceTree = "<group>"; };
 		F4A5AF0F1E8A6D6500DFDF2A /* DataSourceTools.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataSourceTools.swift; sourceTree = "<group>"; };
 		F4A5AF121E8A6DB000DFDF2A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -55,6 +57,34 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		F42A769D1E8B92FB000E1107 /* ReusableViews */ = {
+			isa = PBXGroup;
+			children = (
+				F42A769E1E8B92FB000E1107 /* CEFirstHeaderCollectionReusableView.swift */,
+				F42A769F1E8B92FB000E1107 /* CEHeaderCollectionReusableView.swift */,
+				F42A76A01E8B92FB000E1107 /* CEThemeCollectionViewCell.swift */,
+			);
+			path = ReusableViews;
+			sourceTree = "<group>";
+		};
+		F42A76A11E8B92FB000E1107 /* SubViews */ = {
+			isa = PBXGroup;
+			children = (
+				F42A76A21E8B92FB000E1107 /* CECloseButton.swift */,
+				F42A76A31E8B92FB000E1107 /* CEThemeEditButton.swift */,
+				F42A76A41E8B92FB000E1107 /* CEThemeLabel.swift */,
+			);
+			path = SubViews;
+			sourceTree = "<group>";
+		};
+		F42A76AB1E8B93CE000E1107 /* CEScrollMenue */ = {
+			isa = PBXGroup;
+			children = (
+				F42A76AC1E8B9488000E1107 /* CESelectThemeViewController.swift */,
+			);
+			path = CEScrollMenue;
+			sourceTree = "<group>";
+		};
 		F47F83231E85240F00EFCC98 = {
 			isa = PBXGroup;
 			children = (
@@ -74,6 +104,7 @@
 		F47F832E1E85240F00EFCC98 /* CEScrollMenue */ = {
 			isa = PBXGroup;
 			children = (
+				F42A76AB1E8B93CE000E1107 /* CEScrollMenue */,
 				F4A5AED91E8A529900DFDF2A /* CESelectTheme */,
 				F47F832F1E85240F00EFCC98 /* AppDelegate.swift */,
 				F4A5AED71E8A509300DFDF2A /* ViewController.swift */,
@@ -99,12 +130,8 @@
 		F4A5AEDB1E8A529900DFDF2A /* CESelectThemeViews */ = {
 			isa = PBXGroup;
 			children = (
-				F4A5AEE01E8A529900DFDF2A /* CEThemeEditButton.swift */,
-				F4A5AEE11E8A529900DFDF2A /* CEThemeLabel.swift */,
-				F4A5AEE91E8A551800DFDF2A /* CECloseButton.swift */,
-				F4A5AEDF1E8A529900DFDF2A /* CEThemeCollectionViewCell.swift */,
-				F4A5AEED1E8A5FEB00DFDF2A /* CEHeaderCollectionReusableView.swift */,
-				F4A5AEDC1E8A529900DFDF2A /* CEFirstHeaderCollectionReusableView.swift */,
+				F42A769D1E8B92FB000E1107 /* ReusableViews */,
+				F42A76A11E8B92FB000E1107 /* SubViews */,
 				F4A5AEDE1E8A529900DFDF2A /* CEThemeCollectionView.swift */,
 			);
 			path = CESelectThemeViews;
@@ -183,18 +210,19 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F4A5AEE61E8A529900DFDF2A /* CEThemeCollectionViewCell.swift in Sources */,
 				F4A5AED81E8A509300DFDF2A /* ViewController.swift in Sources */,
-				F4A5AEEA1E8A551800DFDF2A /* CECloseButton.swift in Sources */,
 				F47F83301E85240F00EFCC98 /* AppDelegate.swift in Sources */,
+				F42A76A81E8B92FB000E1107 /* CECloseButton.swift in Sources */,
+				F42A76A71E8B92FB000E1107 /* CEThemeCollectionViewCell.swift in Sources */,
+				F42A76AA1E8B92FB000E1107 /* CEThemeLabel.swift in Sources */,
+				F42A76A61E8B92FB000E1107 /* CEHeaderCollectionReusableView.swift in Sources */,
+				F42A76AD1E8B9488000E1107 /* CESelectThemeViewController.swift in Sources */,
+				F42A76A91E8B92FB000E1107 /* CEThemeEditButton.swift in Sources */,
+				F42A76A51E8B92FB000E1107 /* CEFirstHeaderCollectionReusableView.swift in Sources */,
 				F4A5AF101E8A6D6500DFDF2A /* DataSourceTools.swift in Sources */,
-				F4A5AEE31E8A529900DFDF2A /* CEFirstHeaderCollectionReusableView.swift in Sources */,
 				F4A5AEE51E8A529900DFDF2A /* CEThemeCollectionView.swift in Sources */,
 				F4A5AEE21E8A529900DFDF2A /* CESelectThemeController.swift in Sources */,
 				F4A5AEF01E8A658C00DFDF2A /* CEThemeDataSourceProtocal.swift in Sources */,
-				F4A5AEE81E8A529900DFDF2A /* CEThemeLabel.swift in Sources */,
-				F4A5AEEE1E8A5FEB00DFDF2A /* CEHeaderCollectionReusableView.swift in Sources */,
-				F4A5AEE71E8A529900DFDF2A /* CEThemeEditButton.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

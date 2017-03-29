@@ -9,10 +9,14 @@
 import UIKit
 
 class CEHeaderCollectionReusableView: UICollectionReusableView {
+    
     var titleLabel: UILabel!
+    var detailLabel: UILabel!
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         self.addTitleLabel()
+        self.addDetailLabel()
     }
     
     func addTitleLabel() {
@@ -20,8 +24,19 @@ class CEHeaderCollectionReusableView: UICollectionReusableView {
         self.titleLabel.font = UIFont.boldSystemFont(ofSize: 15)
         self.addSubview(titleLabel)
     }
+    
+    func addDetailLabel() {
+        self.detailLabel = UILabel(frame: CGRect(x: self.titleLabel.frame.width, y: 30, width: 100, height: 20))
+        self.detailLabel.font = UIFont.systemFont(ofSize: 11)
+        self.detailLabel.textColor = UIColor.lightGray
+        self.detailLabel.text = "点击可以添加"
+        self.addSubview(detailLabel)
+        
+    }
 
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+    
+    
 }

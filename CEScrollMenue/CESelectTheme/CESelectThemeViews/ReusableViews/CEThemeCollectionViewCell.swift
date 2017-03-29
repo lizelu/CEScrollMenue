@@ -9,6 +9,7 @@
 import UIKit
 typealias TapButtonClosure = (CEThemeCollectionViewCell) -> Void
 class CEThemeCollectionViewCell: UICollectionViewCell {
+    
     var textLabel: CEThemeLabel!
     var editTagImageView: UIImageView!
     var tapButtonClosure: TapButtonClosure!
@@ -60,4 +61,6 @@ class CEThemeCollectionViewCell: UICollectionViewCell {
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+    
+    
 }
