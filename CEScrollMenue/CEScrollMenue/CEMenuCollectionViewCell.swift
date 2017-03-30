@@ -22,6 +22,7 @@ class CEMenuCollectionViewCell: UICollectionViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
+
     /// 根据数据的状态来设置Cell的选择状态
     func updateSelectState() {
         if self.isSelected {

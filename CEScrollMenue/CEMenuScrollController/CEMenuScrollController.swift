@@ -72,19 +72,20 @@ class CEMenuScrollController: UIViewController, UICollectionViewDataSource {
         //获取更新后的DataSource
         selectThemeController.setUpdateDataSourceClosure { (dataSource) in
             self.updateDataSource(dataSource: dataSource)
+            let firstIndexPath = IndexPath(row: 0, section: 0)
+            self.menuView.scrollToItem(indexPath: firstIndexPath)
+            self.contentCollectionView.scrollToItem(at: firstIndexPath, at: UICollectionViewScrollPosition.centeredHorizontally, animated: true)
         }
-        
         self.present(selectThemeController, animated: true) {}
     }
     
     func updateDataSource(dataSource: DataSourceType) {
-        self.dataSource = dataSource
-        self.menuView.updateDataSource(data: dataSource)
+        self.dataSource = DataSourceTools.setSelcted(dataSource: dataSource, index: 0)
+        self.menuView.updateDataSource(data: self.dataSource)
         self.contentCollectionView.reloadData()
     }
 
-    
-    // Mark: - UICollectionViewDataSource
+
     
     // Mark: - UICollectionViewDataSource
     
