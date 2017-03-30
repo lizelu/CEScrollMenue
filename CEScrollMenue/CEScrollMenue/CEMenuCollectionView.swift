@@ -13,16 +13,23 @@ class CEMenuCollectionView: UICollectionView, UICollectionViewDelegate, UICollec
     let minimumLineAndInteritemSpacingForSection: CGFloat = 10
     var data: Array<CEThemeDataSourceProtocal>!
     
+    var height: CGFloat {
+        get {
+            return self.frame.size.height
+        }
+    }
+    
+    
     init(frame: CGRect, data: Array<CEThemeDataSourceProtocal>) {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .horizontal
         super.init(frame: frame, collectionViewLayout: layout)
         self.data = data
         self.register(CEMenuCollectionViewCell.classForCoder(), forCellWithReuseIdentifier: MenuCellReuseIdentifier)
-        self.backgroundColor = UIColor.gray
         self.isScrollEnabled = true
         self.delegate = self
         self.showsHorizontalScrollIndicator = false
+        self.backgroundColor = UIColor.clear
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -31,8 +38,7 @@ class CEMenuCollectionView: UICollectionView, UICollectionViewDelegate, UICollec
     
     /// 改变Cell的尺寸
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        print(CGFloat(self.data[indexPath.row].itemWidth()))
-        return CGSize(width:CGFloat(self.data[indexPath.row].itemWidth())  , height: 30)
+        return CGSize(width:CGFloat(self.data[indexPath.row].itemWidth())  , height: height)
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
