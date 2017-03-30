@@ -33,7 +33,7 @@ class ViewController: UIViewController {
     }
     
     @IBAction func tapShowMenuButton(_ sender: UIButton) {
-        let menuVC = CEMenuViewController(dataSource: self.dataSource)
+        let menuVC = CEMenuScrollController(dataSource: self.dataSource)
         self.navigationController?.pushViewController(menuVC, animated: true)
     }
 }

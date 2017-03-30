@@ -40,9 +40,9 @@ class CEMenuView: UIView, UICollectionViewDataSource {
                                                         data: dataSource[0])
         self.menueCollectionView.dataSource = self
         weak var weak_self = self
-        self.menueCollectionView.setDidSelectItemClosure { (row) in
+        self.menueCollectionView.setDidSelectItemClosure { (indexPath) in
             if weak_self?.didSelectItmeClosure != nil {
-                weak_self?.didSelectItmeClosure(row)
+                weak_self?.didSelectItmeClosure(indexPath)
             }
         }
         self.addSubview(self.menueCollectionView)
@@ -60,7 +60,7 @@ class CEMenuView: UIView, UICollectionViewDataSource {
     
     ///为按钮添加渐变背景
     func addBackview(button: UIButton) {
-        let color1 = UIColor(red: 245/255, green: 245/255, blue: 245/255, alpha: 0.8)
+        let color1 = UIColor(red: 245/255, green: 245/255, blue: 245/255, alpha: 0.85)
         let color2 = UIColor(red: 245/255, green: 245/255, blue: 245/255, alpha: 1)
         let colors = [color1.cgColor, color2.cgColor];
         let gradient = CAGradientLayer()

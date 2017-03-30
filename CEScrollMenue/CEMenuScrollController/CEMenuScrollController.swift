@@ -9,7 +9,7 @@
 import UIKit
 
 
-class CEMenuViewController: UIViewController {
+class CEMenuScrollController: UIViewController {
 
     var menuView: CEMenuView!
     var dataSource: DataSourceType!
@@ -37,8 +37,10 @@ class CEMenuViewController: UIViewController {
             weak_self?.presentCESelectThemeController()
         }
         
-        self.menuView.setDidSelectItemClosure { (row) in
-            self.dataSource = DataSourceTools.setSelcted(dataSource: self.dataSource, index: row)
+        ///点击Cell的回调
+        self.menuView.setDidSelectItemClosure { (indexPath) in
+            print("点击的第\(indexPath.row)个Cell")
+            self.dataSource = DataSourceTools.setSelcted(dataSource: self.dataSource, index: indexPath.row)
             self.menuView.updateDataSource(data: self.dataSource)
         }
         

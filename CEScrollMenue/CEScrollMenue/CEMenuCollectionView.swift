@@ -8,7 +8,7 @@
 
 import UIKit
 let MenuCellReuseIdentifier = "CEMenuCollectionViewCell"
-typealias CEDidSelectItemClosureType = (Int) -> ()
+typealias CEDidSelectItemClosureType = (IndexPath) -> ()
 class CEMenuCollectionView: UICollectionView, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
     
     let minimumLineAndInteritemSpacingForSection: CGFloat = 15
@@ -52,7 +52,7 @@ class CEMenuCollectionView: UICollectionView, UICollectionViewDelegate, UICollec
         collectionView.scrollToItem(at: indexPath, at: UICollectionViewScrollPosition.centeredHorizontally, animated: true)
         
         if self.didSelectItmeClosure != nil{
-            self.didSelectItmeClosure(indexPath.row)
+            self.didSelectItmeClosure(indexPath)
         }
     }
     
