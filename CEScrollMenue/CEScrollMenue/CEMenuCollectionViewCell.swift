@@ -22,6 +22,7 @@ class CEMenuCollectionViewCell: UICollectionViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
+    /// 根据数据的状态来设置Cell的选择状态
     func updateSelectState() {
         if self.isSelected {
             UIView.animate(withDuration: 0.2, animations: {
@@ -32,8 +33,6 @@ class CEMenuCollectionViewCell: UICollectionViewCell {
             self.menuLabel.textColor = UIColor.black
         }
     }
-    
-    
     
     func addMenuLabel() {
         self.menuLabel = UILabel(frame: CGRect(x: 0, y: 0, width: 300, height: self.frame.height))

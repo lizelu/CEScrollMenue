@@ -49,20 +49,33 @@ class CEMenuView: UIView, UICollectionViewDataSource {
     }
     
     func addSelectThemeButton() {
+        
         let button = UIButton(frame: getSelectButtonFrame())
+        
+        let color1 = UIColor(red: 245/255, green: 245/255, blue: 245/255, alpha: 0.8)
+        let color2 = UIColor(red: 245/255, green: 245/255, blue: 245/255, alpha: 1)
+        let colors = [color1.cgColor, color2.cgColor];
+        let gradient = CAGradientLayer()
+        gradient.startPoint = CGPoint(x: 0, y: 0)
+        gradient.endPoint = CGPoint(x: 1, y: 0)
+        gradient.colors = colors
+        gradient.frame = button.bounds
+        button.layer.addSublayer(gradient)
+        
         button.setTitle("+", for: .normal)
         button.titleLabel?.font = UIFont.systemFont(ofSize: 23)
         button.setTitleColor(UIColor.darkText, for: .normal)
         button.addTarget(self, action: #selector(showSelectMenu(sender:)), for: .touchUpInside)
         self.addSubview(button)
     }
+    
 
     func setTapSelectThemeClosure(closure: @escaping TapSelectThemeClosure) {
         self.tapSelectThemeClosure = closure
     }
     
     func getMenueCollectionViewFrame() -> CGRect {
-        return CGRect(x: 0, y: 0, width: SCREEN_WIDTH - height, height: height)
+        return CGRect(x: 0, y: 0, width: SCREEN_WIDTH, height: height)
     }
 
     func getSelectButtonFrame() -> CGRect {

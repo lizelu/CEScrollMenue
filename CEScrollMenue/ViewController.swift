@@ -16,7 +16,6 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         self.dataSource = DataSourceTools.createDataSource()
     }
-
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }

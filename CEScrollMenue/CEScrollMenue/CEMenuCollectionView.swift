@@ -47,7 +47,10 @@ class CEMenuCollectionView: UICollectionView, UICollectionViewDelegate, UICollec
     
     //MARK: - UICollectionViewDelegate
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        print(indexPath)
+        
+        //将点击的Cell移到中点
+        collectionView.scrollToItem(at: indexPath, at: UICollectionViewScrollPosition.centeredHorizontally, animated: true)
+        
         if self.didSelectItmeClosure != nil{
             self.didSelectItmeClosure(indexPath.row)
         }
@@ -60,7 +63,7 @@ class CEMenuCollectionView: UICollectionView, UICollectionViewDelegate, UICollec
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
-        return UIEdgeInsetsMake(0, 15, 0, 0)
+        return UIEdgeInsetsMake(0, 15, 0, self.frame.height)
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
