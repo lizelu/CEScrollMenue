@@ -22,6 +22,16 @@ class CEMenuCollectionViewCell: UICollectionViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
+    func updateSelectState() {
+        var textColor = UIColor.darkText
+        if self.isSelected {
+            textColor = UIColor.red
+        }
+        self.menuLabel.textColor = textColor
+    }
+    
+    
+    
     func addMenuLabel() {
         self.menuLabel = UILabel(frame: CGRect(x: 0, y: 0, width: 300, height: self.frame.height))
         self.menuLabel.textColor = UIColor.darkText

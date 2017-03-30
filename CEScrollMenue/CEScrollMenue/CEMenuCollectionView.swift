@@ -8,10 +8,12 @@
 
 import UIKit
 let MenuCellReuseIdentifier = "CEMenuCollectionViewCell"
+typealias CEDidSelectItemClosureType = (Int) -> ()
 class CEMenuCollectionView: UICollectionView, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
     
     let minimumLineAndInteritemSpacingForSection: CGFloat = 15
     var data: Array<CEThemeDataSourceProtocal>!
+    var didSelectItmeClosure: CEDidSelectItemClosureType!
     
     var height: CGFloat {
         get {
@@ -31,6 +33,10 @@ class CEMenuCollectionView: UICollectionView, UICollectionViewDelegate, UICollec
         fatalError("init(coder:) has not been implemented")
     }
     
+    func setDidSelectItemClosure(closure: @escaping CEDidSelectItemClosureType) {
+        self.didSelectItmeClosure = closure
+    }
+    
     func configCurrentView() {
         self.register(CEMenuCollectionViewCell.classForCoder(), forCellWithReuseIdentifier: MenuCellReuseIdentifier)
         self.isScrollEnabled = true
@@ -39,6 +45,15 @@ class CEMenuCollectionView: UICollectionView, UICollectionViewDelegate, UICollec
         self.backgroundColor = UIColor.clear
     }
     
+    //MARK: - UICollectionViewDelegate
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        print(indexPath)
+        if self.didSelectItmeClosure != nil{
+            self.didSelectItmeClosure(indexPath.row)
+        }
+    }
+    
+    //MARK: - UICollectionViewDelegateFlowLayout
     /// 改变Cell的尺寸
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         return CGSize(width:CGFloat(self.data[indexPath.row].itemWidth())  , height: height)

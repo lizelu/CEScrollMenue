@@ -36,6 +36,12 @@ class CEMenuViewController: UIViewController {
         self.menuView.setTapSelectThemeClosure {
             weak_self?.presentCESelectThemeController()
         }
+        
+        self.menuView.setDidSelectItemClosure { (row) in
+            self.dataSource = DataSourceTools.setSelcted(dataSource: self.dataSource, index: row)
+            self.menuView.updateDataSource(data: self.dataSource)
+        }
+        
         self.view.addSubview(self.menuView)
     }
     
@@ -44,12 +50,15 @@ class CEMenuViewController: UIViewController {
         
         //获取更新后的DataSource
         selectThemeController.setUpdateDataSourceClosure { (dataSource) in
-            DataSourceTools.displayDataSource(dataSource: dataSource)
-            self.dataSource = dataSource
-            self.menuView.updateDataSource(data: dataSource)
+            self.updateDataSource(dataSource: dataSource)
         }
         
         self.present(selectThemeController, animated: true) {}
+    }
+    
+    func updateDataSource(dataSource: DataSourceType) {
+        self.dataSource = dataSource
+        self.menuView.updateDataSource(data: dataSource)
     }
     
     // Mark: - UICollectionViewDataSource

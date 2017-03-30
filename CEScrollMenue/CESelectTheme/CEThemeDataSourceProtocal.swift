@@ -10,4 +10,6 @@ import Foundation
 protocol CEThemeDataSourceProtocal {
     func menuItemName() -> String
     func itemWidth() -> Float
+    func isSelect() -> Bool
+    func setSelected(select: Bool)
 }

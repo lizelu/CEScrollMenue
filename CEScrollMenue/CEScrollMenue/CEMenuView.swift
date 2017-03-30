@@ -12,6 +12,7 @@ class CEMenuView: UIView, UICollectionViewDataSource {
     var menueCollectionView: CEMenuCollectionView!
     var dataSource: DataSourceType!
     var tapSelectThemeClosure: TapSelectThemeClosure!
+    var didSelectItmeClosure: CEDidSelectItemClosureType!
     var height: CGFloat {
         get {
             return self.frame.size.height
@@ -30,10 +31,20 @@ class CEMenuView: UIView, UICollectionViewDataSource {
         fatalError("init(coder:) has not been implemented")
     }
     
+    func setDidSelectItemClosure(closure: @escaping CEDidSelectItemClosureType) {
+        self.didSelectItmeClosure = closure
+    }
+    
     func addMenuCollectionView() {
         self.menueCollectionView = CEMenuCollectionView(frame: getMenueCollectionViewFrame(),
                                                         data: dataSource[0])
         self.menueCollectionView.dataSource = self
+        weak var weak_self = self
+        self.menueCollectionView.setDidSelectItemClosure { (row) in
+            if weak_self?.didSelectItmeClosure != nil {
+                weak_self?.didSelectItmeClosure(row)
+            }
+        }
         self.addSubview(self.menueCollectionView)
     }
     
@@ -92,6 +103,8 @@ class CEMenuView: UIView, UICollectionViewDataSource {
         
         let item = dataSource[indexPath.section][indexPath.row] as CEThemeDataSourceProtocal
         cell.setMenu(text: item.menuItemName())
+        cell.isSelected = item.isSelect()
+        cell.updateSelectState()
         return cell
     }
 }

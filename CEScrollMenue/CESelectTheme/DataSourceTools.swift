@@ -11,6 +11,7 @@ import UIKit
 class MeteData: CEThemeDataSourceProtocal {
     var name: String = ""
     var width: Float = 30
+    var selected: Bool = false
     init(name: String) {
         self.name = name
         self.width = Float(calculateContentWidth(contentText: self.name))
@@ -22,6 +23,14 @@ class MeteData: CEThemeDataSourceProtocal {
     
     func itemWidth() -> Float {
        return self.width
+    }
+    
+    func isSelect() -> Bool {
+        return self.selected
+    }
+    
+    func setSelected(select: Bool) {
+        self.selected = select
     }
     
     func calculateContentWidth(contentText: String) -> CGFloat {
@@ -48,6 +57,8 @@ class DataSourceTools: NSObject {
             dataSource.append(subArray)
         }
         
+        dataSource.first?.first?.setSelected(select: true)
+        
 //        for i in 0..<2 {
 //            var subArray = Array<CEThemeDataSourceProtocal>()
 //            for j in 0..<15 {
@@ -72,6 +83,20 @@ class DataSourceTools: NSObject {
             }
             print("\n\n")
         }
+    }
+    
+    class func setSelcted( dataSource: DataSourceType, index: Int) -> DataSourceType {
+        for items in dataSource {
+            for item in items {
+                item.setSelected(select: false)
+            }
+        }
+        
+        if index < (dataSource.first?.count)! {
+            dataSource[0][index].setSelected(select: true)
+        }
+        
+        return dataSource
     }
     
     
