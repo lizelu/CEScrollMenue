@@ -27,7 +27,7 @@ class CEMenuCollectionViewCell: UICollectionViewCell {
     func updateSelectState() {
         if self.isSelected {
             UIView.animate(withDuration: 0.2, animations: {
-                self.transform = CGAffineTransform(scaleX: 1.08, y: 1.08)
+                self.transform = CGAffineTransform(scaleX: 1.1, y: 1.1)
                 self.menuLabel.textColor = UIColor.red
             })
         } else {
@@ -38,7 +38,7 @@ class CEMenuCollectionViewCell: UICollectionViewCell {
     func addMenuLabel() {
         self.menuLabel = UILabel(frame: CGRect(x: 0, y: 0, width: 300, height: self.frame.height))
         self.menuLabel.textColor = UIColor.darkText
-        self.menuLabel.font = UIFont.systemFont(ofSize: 13)
+        self.menuLabel.font = UIFont.systemFont(ofSize: 15)
         self.contentView.addSubview(menuLabel)
     }
     

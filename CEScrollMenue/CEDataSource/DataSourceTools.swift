@@ -36,13 +36,13 @@ class MeteData: CEThemeDataSourceProtocal {
     func calculateContentWidth(contentText: String) -> CGFloat {
         let maxLabelSize: CGSize = CGSize(width: 1000, height: 0)
         let contentNSString = contentText as NSString
-        let rect = contentNSString.boundingRect(with: maxLabelSize, options: .usesLineFragmentOrigin, attributes: [NSFontAttributeName : UIFont.systemFont(ofSize: 13)], context: nil)
+        let rect = contentNSString.boundingRect(with: maxLabelSize, options: .usesLineFragmentOrigin, attributes: [NSFontAttributeName : UIFont.systemFont(ofSize: 15)], context: nil)
         return rect.size.width
 
     }
 }
 
-let MenuName: Array<Array<String>> = [["推荐", "博客园", "语录", "汽车", "正能量", "美图", "房产", "故事", "美女", "北京", "中国好声音", "热点", "小说"], ["养生", "历史", "科学", "国际", "娱乐", "数码", "财经", "星座", "精选","问答", "彩票", "特卖", "热点", "人文", "音乐"]]
+let MenuName: Array<Array<String>> = [["推荐", "博客园", "语录", "汽车", "正能量", "美图", "房产", "故事", "美女", "北京", "中国好声音", "热点", "小说",  "菜谱", "旅游", "电影", "家居", "游戏"], ["养生", "历史", "科学", "国际", "娱乐", "数码", "财经", "星座", "精选","问答", "彩票", "特卖", "热点", "人文", "音乐", "宠物", "教育"]]
 
 
 class DataSourceTools: NSObject {

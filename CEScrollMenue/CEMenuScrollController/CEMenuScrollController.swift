@@ -35,7 +35,7 @@ class CEMenuScrollController: UIViewController, UICollectionViewDataSource {
     }
     
     func addMenuView() {
-        self.menuView = CEMenuView(dataSource: self.dataSource, frame: CGRect(x: 0, y: 63, width: SCREEN_WIDTH, height: 30))
+        self.menuView = CEMenuView(dataSource: self.dataSource, frame: CGRect(x: 0, y: 63, width: SCREEN_WIDTH, height: 45))
         weak var weak_self = self
         self.menuView.setTapSelectThemeClosure {
             weak_self?.presentCESelectThemeController()
