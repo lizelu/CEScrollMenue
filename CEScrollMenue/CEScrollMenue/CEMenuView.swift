@@ -40,8 +40,9 @@ class CEMenuView: UIView, UICollectionViewDataSource {
     func addSelectThemeButton() {
         let button = UIButton(frame: getSelectButtonFrame())
         button.setTitle("+", for: .normal)
+        button.titleLabel?.font = UIFont.systemFont(ofSize: 23)
+        button.setTitleColor(UIColor.darkText, for: .normal)
         button.addTarget(self, action: #selector(showSelectMenu(sender:)), for: .touchUpInside)
-        button.setTitleColor(UIColor.red, for: .normal)
         self.addSubview(button)
     }
 
@@ -54,7 +55,7 @@ class CEMenuView: UIView, UICollectionViewDataSource {
     }
 
     func getSelectButtonFrame() -> CGRect {
-        return CGRect(x: SCREEN_WIDTH - height, y: 0, width: height, height: height)
+        return CGRect(x: SCREEN_WIDTH - height, y: -2, width: height, height: height)
     }
     
     func updateDataSource(data: DataSourceType) {
