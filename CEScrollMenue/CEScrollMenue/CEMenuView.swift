@@ -49,9 +49,17 @@ class CEMenuView: UIView, UICollectionViewDataSource {
     }
     
     func addSelectThemeButton() {
-        
         let button = UIButton(frame: getSelectButtonFrame())
-        
+        self.addBackview(button: button)
+        button.setTitle("+", for: .normal)
+        button.titleLabel?.font = UIFont.systemFont(ofSize: 23)
+        button.setTitleColor(UIColor.darkText, for: .normal)
+        button.addTarget(self, action: #selector(showSelectMenu(sender:)), for: .touchUpInside)
+        self.addSubview(button)
+    }
+    
+    ///为按钮添加渐变背景
+    func addBackview(button: UIButton) {
         let color1 = UIColor(red: 245/255, green: 245/255, blue: 245/255, alpha: 0.8)
         let color2 = UIColor(red: 245/255, green: 245/255, blue: 245/255, alpha: 1)
         let colors = [color1.cgColor, color2.cgColor];
@@ -61,14 +69,7 @@ class CEMenuView: UIView, UICollectionViewDataSource {
         gradient.colors = colors
         gradient.frame = button.bounds
         button.layer.addSublayer(gradient)
-        
-        button.setTitle("+", for: .normal)
-        button.titleLabel?.font = UIFont.systemFont(ofSize: 23)
-        button.setTitleColor(UIColor.darkText, for: .normal)
-        button.addTarget(self, action: #selector(showSelectMenu(sender:)), for: .touchUpInside)
-        self.addSubview(button)
     }
-    
 
     func setTapSelectThemeClosure(closure: @escaping TapSelectThemeClosure) {
         self.tapSelectThemeClosure = closure
