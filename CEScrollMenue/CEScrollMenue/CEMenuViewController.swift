@@ -23,11 +23,14 @@ class CEMenuViewController: UIViewController {
         fatalError("init(coder:) has not been implemented")
     }
 
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.automaticallyAdjustsScrollViewInsets = false
-        self.menuView = CEMenuView(dataSource: self.dataSource, frame: CGRect(x: 0, y: 63, width: SCREEN_WIDTH, height: 25))
+        self.addMenuView()
+    }
+    
+    func addMenuView() {
+        self.menuView = CEMenuView(dataSource: self.dataSource, frame: CGRect(x: 0, y: 63, width: SCREEN_WIDTH, height: 30))
         self.view.backgroundColor = UIColor.white
         weak var weak_self = self
         self.menuView.setTapSelectThemeClosure {
@@ -47,7 +50,6 @@ class CEMenuViewController: UIViewController {
         }
         
         self.present(selectThemeController, animated: true) {}
-
     }
     
     // Mark: - UICollectionViewDataSource

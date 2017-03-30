@@ -18,17 +18,18 @@ class CEMenuCollectionViewCell: UICollectionViewCell {
         addMenuLabel()
     }
     
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     func addMenuLabel() {
         self.menuLabel = UILabel(frame: CGRect(x: 0, y: 0, width: 300, height: self.frame.height))
-        self.menuLabel.textColor = UIColor.darkGray
+        self.menuLabel.textColor = UIColor.darkText
         self.menuLabel.font = UIFont.systemFont(ofSize: 13)
         self.contentView.addSubview(menuLabel)
     }
     
     func setMenu(text: String) {
         self.menuLabel.text = text
-    }
-    required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
     }
 }

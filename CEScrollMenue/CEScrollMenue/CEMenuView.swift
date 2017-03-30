@@ -21,28 +21,30 @@ class CEMenuView: UIView, UICollectionViewDataSource {
     init(dataSource: DataSourceType, frame: CGRect) {
         super.init(frame: frame)
         self.dataSource = dataSource
-        self.backgroundColor = UIColor(red: 235/255, green: 235/255, blue: 235/255, alpha: 1)
-        self.menueCollectionView = CEMenuCollectionView(frame: getMenueCollectionViewFrame(),
-                                                        data: dataSource[0])
-        self.menueCollectionView.dataSource = self
-        self.addSubview(self.menueCollectionView)
-        
-        
-        
-        let button = UIButton(frame: getSelectButtonFrame())
-        button.setTitle("+", for: .normal)
-        button.layer.borderColor = UIColor.blue.cgColor
-        button.layer.borderWidth = 1
-        button.addTarget(self, action: #selector(showSelectMenu(sender:)), for: .touchUpInside)
-        button.setTitleColor(UIColor.red, for: .normal)
-        self.addSubview(button)
+        self.backgroundColor = UIColor(red: 245/255, green: 245/255, blue: 245/255, alpha: 1)
+        self.addMenuCollectionView()
+        self.addSelectThemeButton()
     }
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-
     
+    func addMenuCollectionView() {
+        self.menueCollectionView = CEMenuCollectionView(frame: getMenueCollectionViewFrame(),
+                                                        data: dataSource[0])
+        self.menueCollectionView.dataSource = self
+        self.addSubview(self.menueCollectionView)
+    }
+    
+    func addSelectThemeButton() {
+        let button = UIButton(frame: getSelectButtonFrame())
+        button.setTitle("+", for: .normal)
+        button.addTarget(self, action: #selector(showSelectMenu(sender:)), for: .touchUpInside)
+        button.setTitleColor(UIColor.red, for: .normal)
+        self.addSubview(button)
+    }
+
     func setTapSelectThemeClosure(closure: @escaping TapSelectThemeClosure) {
         self.tapSelectThemeClosure = closure
     }
@@ -66,7 +68,6 @@ class CEMenuView: UIView, UICollectionViewDataSource {
             self.tapSelectThemeClosure()
         }
     }
-
     
     // Mark: - UICollectionViewDataSource
     
