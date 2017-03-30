@@ -33,21 +33,34 @@ class MeteData: CEThemeDataSourceProtocal {
     }
 }
 
+let MenuName: Array<Array<String>> = [["推荐", "博客园", "语录", "汽车", "正能量", "美图", "房产", "故事", "美女", "北京", "中国好声音", "热点", "小说"], ["养生", "历史", "科学", "国际", "娱乐", "数码", "财经", "星座", "精选","问答", "彩票", "特卖", "热点", "人文", "音乐"]]
+
+
 class DataSourceTools: NSObject {
     class func createDataSource() -> DataSourceType {
         var dataSource = Array<Array<CEThemeDataSourceProtocal>>()
-        for i in 0..<2 {
+        
+        for items in MenuName {
             var subArray = Array<CEThemeDataSourceProtocal>()
-            for j in 0..<15 {
-                if j % 3 == 0 {
-                    subArray.append(MeteData(name: "特选频道\(i)-\(j)"))
-                } else {
-                    subArray.append(MeteData(name: "频道\(i)-\(j)"))
-                }
-                
+            for item in items {
+                subArray.append(MeteData(name: item))
             }
             dataSource.append(subArray)
         }
+        
+//        for i in 0..<2 {
+//            var subArray = Array<CEThemeDataSourceProtocal>()
+//            for j in 0..<15 {
+//                if j % 3 == 0 {
+//                    subArray.append(MeteData(name: "特选频道\(i)-\(j)"))
+//                } else {
+//                    subArray.append(MeteData(name: "频道\(i)-\(j)"))
+//                }
+//                
+//            }
+//            dataSource.append(subArray)
+//        }
+        
         return dataSource
     }
     
