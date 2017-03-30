@@ -23,11 +23,14 @@ class CEMenuCollectionViewCell: UICollectionViewCell {
     }
     
     func updateSelectState() {
-        var textColor = UIColor.darkText
         if self.isSelected {
-            textColor = UIColor.red
+            UIView.animate(withDuration: 0.2, animations: {
+                self.transform = CGAffineTransform(scaleX: 1.08, y: 1.08)
+                self.menuLabel.textColor = UIColor.red
+            })
+        } else {
+            self.menuLabel.textColor = UIColor.black
         }
-        self.menuLabel.textColor = textColor
     }
     
     
