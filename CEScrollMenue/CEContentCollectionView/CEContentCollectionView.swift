@@ -8,10 +8,15 @@
 
 import UIKit
 let CEContentwCellReusableIdentifier = "CEContentCollectionViewCell"
+typealias CECurrentShowContentCellClosureType = (IndexPath) -> ()
 class CEContentCollectionView: UICollectionView, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
     
     let minimumLineAndInteritemSpacingForSection: CGFloat = 0
     var data: Array<CEThemeDataSourceProtocal>!
+    var willDisplayIndexPath: IndexPath!
+    var currentShowCellClosure: CECurrentShowContentCellClosureType!
+    var scrollDragEnd: Bool = false
+    
     
     var height: CGFloat {
         get {
@@ -40,6 +45,34 @@ class CEContentCollectionView: UICollectionView, UICollectionViewDelegate, UICol
         self.isPagingEnabled = true
     }
     
+    func setCurrentShowCellClosure(closure: @escaping CECurrentShowContentCellClosureType) {
+        self.currentShowCellClosure = closure
+    }
+    
+    //MARK: - UICollectionViewDelegate
+    func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
+        self.willDisplayIndexPath = indexPath
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didEndDisplaying cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
+        if self.willDisplayIndexPath == nil {
+            return
+        }
+        
+        if self.willDisplayIndexPath.row == indexPath.row {
+            return
+        }
+        
+        //只有再内容ContentView拖动结束后再更新当前显示的IndexPath
+        if self.currentShowCellClosure != nil && self.scrollDragEnd {
+            self.currentShowCellClosure(self.willDisplayIndexPath)
+            self.scrollDragEnd = false
+        }
+    }
+    
+    func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
+        self.scrollDragEnd = true
+    }
     
     //MARK: - UICollectionViewDelegateFlowLayout
     /// 改变Cell的尺寸

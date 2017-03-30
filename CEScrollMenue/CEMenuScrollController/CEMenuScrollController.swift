@@ -46,6 +46,9 @@ class CEMenuScrollController: UIViewController, UICollectionViewDataSource {
             print("点击的第\(indexPath.row)个Cell")
             weak_self?.dataSource = DataSourceTools.setSelcted(dataSource: self.dataSource, index: indexPath.row)
             weak_self?.menuView.updateDataSource(data: self.dataSource)
+            
+            //点击MenuCell后移动ContentCell到指定位置
+            weak_self?.contentCollectionView.scrollToItem(at: indexPath, at: UICollectionViewScrollPosition.centeredHorizontally, animated: true)
         }
         
         self.view.addSubview(self.menuView)
@@ -55,6 +58,11 @@ class CEMenuScrollController: UIViewController, UICollectionViewDataSource {
         let y = self.menuView.frame.origin.y + self.menuView.frame.height
         self.contentCollectionView = CEContentCollectionView(frame: CGRect(x: 0, y: y, width: SCREEN_WIDTH, height: SCREEN_HEIGHT - y), data: self.dataSource[0])
         self.contentCollectionView.dataSource = self
+        weak var weak_self = self
+        self.contentCollectionView.setCurrentShowCellClosure { (currentShowIndexPath) in
+            weak_self?.menuView.scrollToItem(indexPath: currentShowIndexPath)
+            print("当前显示的Cell的IndexPath = \(currentShowIndexPath)")
+        }
         self.view.addSubview(contentCollectionView)
     }
     

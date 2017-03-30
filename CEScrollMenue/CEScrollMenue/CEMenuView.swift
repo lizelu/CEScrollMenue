@@ -35,6 +35,13 @@ class CEMenuView: UIView, UICollectionViewDataSource {
         self.didSelectItmeClosure = closure
     }
     
+    func scrollToItem(indexPath: IndexPath) {
+        if self.didSelectItmeClosure != nil {
+            self.menueCollectionView.scrollToItem(at: indexPath, at: UICollectionViewScrollPosition.centeredHorizontally, animated: true)
+            self.didSelectItmeClosure(indexPath)
+        }
+    }
+    
     func addMenuCollectionView() {
         self.menueCollectionView = CEMenuCollectionView(frame: getMenueCollectionViewFrame(),
                                                         data: dataSource[0])
