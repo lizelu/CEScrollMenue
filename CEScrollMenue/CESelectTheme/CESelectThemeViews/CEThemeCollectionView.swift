@@ -14,20 +14,32 @@ let firstSectionheaderReuseIdentifier = "CEFirstHeaderCollectionReusableView"
 
 class CEThemeCollectionView: UICollectionView, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
     
-    var moveCell: UICollectionViewCell!
-    var moveView: UIView!
-    var gestureRecognizer: UILongPressGestureRecognizer!
-    let normalCellSize = CGSize(width: (SCREEN_WIDTH - 45) / 4, height: 40)
-    let bigCellSize = CGSize(width: 110, height: 50)
-    let minimumLineAndInteritemSpacingForSection: CGFloat = 5
+    private var moveCell: UICollectionViewCell!
+    private var moveView: UIView!
+    private var gestureRecognizer: UILongPressGestureRecognizer!
+    private let normalCellSize = CGSize(width: (SCREEN_WIDTH - 45) / 4, height: 40)
+    private let bigCellSize = CGSize(width: 110, height: 50)
+    private let minimumLineAndInteritemSpacingForSection: CGFloat = 5
     
+    //MARK:- Life Cycle
     override init(frame: CGRect, collectionViewLayout layout: UICollectionViewLayout) {
         super.init(frame: frame, collectionViewLayout: layout)
         self.config()
         self.addGestureRecognizer()
     }
     
-    func config() {
+    //MARK:- Public Method
+    /// 设置手势是否可用
+    ///
+    /// - Parameter isEditor: <#isEditor description#>
+    public func isEnableEdit(isEditor: Bool) {
+        self.gestureRecognizer.isEnabled = isEditor
+    }
+    
+    //MARK:- Private Method
+    
+    /// 配置当前CollectionView
+    private func config() {
         self.register(CEThemeCollectionViewCell.classForCoder(), forCellWithReuseIdentifier: reuseIdentifier)
         self.register(CEHeaderCollectionReusableView.classForCoder(), forSupplementaryViewOfKind: UICollectionElementKindSectionHeader, withReuseIdentifier: headerReuseIdentifier)
         self.register(CEFirstHeaderCollectionReusableView.classForCoder(), forSupplementaryViewOfKind: UICollectionElementKindSectionHeader, withReuseIdentifier: firstSectionheaderReuseIdentifier)
@@ -36,14 +48,8 @@ class CEThemeCollectionView: UICollectionView, UICollectionViewDelegate, UIColle
         self.delegate = self
     }
     
-    /// 设置手势是否可用
-    ///
-    /// - Parameter isEditor: <#isEditor description#>
-    func isEnableEdit(isEditor: Bool) {
-        self.gestureRecognizer.isEnabled = isEditor
-    }
-    
-    func addGestureRecognizer() {
+    /// 添加长按手势
+    private func addGestureRecognizer() {
         gestureRecognizer = UILongPressGestureRecognizer(target: self, action: #selector(longPrese(gestureRecognizer:)))
         gestureRecognizer.minimumPressDuration = 0.5
         self.addGestureRecognizer(gestureRecognizer)
@@ -77,7 +83,7 @@ class CEThemeCollectionView: UICollectionView, UICollectionViewDelegate, UIColle
     /// 开始长按
     ///
     /// - Parameter point: 长按的开始的点
-    func longPressBegin(point: CGPoint) {
+    private func longPressBegin(point: CGPoint) {
         
         guard let tapIndexPath = self.indexPathForItem(at: point) else {
             return
@@ -107,7 +113,7 @@ class CEThemeCollectionView: UICollectionView, UICollectionViewDelegate, UIColle
     /// 长按后进行移动
     ///
     /// - Parameter point: 移动时的点
-    func longPressChange(point: CGPoint) {
+    private func longPressChange(point: CGPoint) {
         if self.moveView != nil {
             self.moveView.center = point
         }
@@ -116,7 +122,7 @@ class CEThemeCollectionView: UICollectionView, UICollectionViewDelegate, UIColle
     }
     
     /// 长按结束
-    func longPressEnd() {
+    private func longPressEnd() {
         
         self.endInteractiveMovement()
         
