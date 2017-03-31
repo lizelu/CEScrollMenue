@@ -20,7 +20,11 @@ class CEContentCollectionViewCell: UICollectionViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func addContentLabel() {
+    public func setContent(text: String) {
+        self.contentLabel.text = text
+    }
+    
+    private func addContentLabel() {
         self.contentLabel = UILabel(frame: CGRect(x: 0, y: 0, width: self.frame.width, height: 300))
         self.contentLabel.textColor = UIColor.darkText
         self.contentLabel.adjustsFontSizeToFitWidth = true
@@ -30,10 +34,6 @@ class CEContentCollectionViewCell: UICollectionViewCell {
         self.contentLabel.layer.shadowOffset = CGSize(width: 5, height: 5)
         self.contentLabel.textAlignment = .center
         self.contentView.addSubview(contentLabel)
-    }
-    
-    func setContent(text: String) {
-        self.contentLabel.text = text
     }
 
 }

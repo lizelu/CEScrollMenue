@@ -11,19 +11,18 @@ let CEContentwCellReusableIdentifier = "CEContentCollectionViewCell"
 typealias CECurrentShowContentCellClosureType = (IndexPath) -> ()
 class CEContentCollectionView: UICollectionView, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
     
-    let minimumLineAndInteritemSpacingForSection: CGFloat = 0
-    var data: Array<CEThemeDataSourceProtocal>!
-    var willDisplayIndexPath: IndexPath!
-    var currentShowCellClosure: CECurrentShowContentCellClosureType!
-    var scrollDragEnd: Bool = false
-    
-    
-    var height: CGFloat {
+    private let minimumLineAndInteritemSpacingForSection: CGFloat = 0   //cell的行间距
+    private var data: Array<CEThemeDataSourceProtocal>!
+    private var willDisplayIndexPath: IndexPath!                        //记录将要显示Cell的IndexPath
+    private var currentShowCellClosure: CECurrentShowContentCellClosureType!    //将当期显示的Cell的IndexPath回调出去
+    private var scrollDragEnd: Bool = false                                     //标记是否用户滑动的标记
+    private var height: CGFloat {
         get {
             return self.frame.size.height
         }
     }
     
+    //MARK:- Life Cycle
     init(frame: CGRect, data: Array<CEThemeDataSourceProtocal>) {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .horizontal
@@ -36,7 +35,13 @@ class CEContentCollectionView: UICollectionView, UICollectionViewDelegate, UICol
         fatalError("init(coder:) has not been implemented")
     }
  
-    func configCurrentView() {
+    //MARK:- Public Method
+    public func setCurrentShowCellClosure(closure: @escaping CECurrentShowContentCellClosureType) {
+        self.currentShowCellClosure = closure
+    }
+    
+    //MARK:- Private Method
+    private func configCurrentView() {
         self.register(CEContentCollectionViewCell.classForCoder(), forCellWithReuseIdentifier: CEContentwCellReusableIdentifier)
         self.isScrollEnabled = true
         self.delegate = self
@@ -45,11 +50,7 @@ class CEContentCollectionView: UICollectionView, UICollectionViewDelegate, UICol
         self.isPagingEnabled = true
     }
     
-    func setCurrentShowCellClosure(closure: @escaping CECurrentShowContentCellClosureType) {
-        self.currentShowCellClosure = closure
-    }
-    
-    //MARK: - UICollectionViewDelegate
+    //MARK:- UICollectionViewDelegate
     func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
         self.willDisplayIndexPath = indexPath
     }
@@ -74,7 +75,9 @@ class CEContentCollectionView: UICollectionView, UICollectionViewDelegate, UICol
         self.scrollDragEnd = true
     }
     
-    //MARK: - UICollectionViewDelegateFlowLayout
+    
+    //MARK:- UICollectionViewDelegateFlowLayout
+    
     /// 改变Cell的尺寸
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         return self.bounds.size

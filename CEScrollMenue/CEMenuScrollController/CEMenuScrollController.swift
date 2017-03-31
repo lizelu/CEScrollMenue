@@ -34,7 +34,7 @@ class CEMenuScrollController: UIViewController, UICollectionViewDataSource {
         self.addContentCollectionView()
     }
     
-    //Mark: - Private Method
+    //MARK:- Private Method
     
     /// 添加菜单View
     private func addMenuView() {
@@ -98,7 +98,7 @@ class CEMenuScrollController: UIViewController, UICollectionViewDataSource {
     }
 
     
-    // Mark: - UICollectionViewDataSource
+    //MARK:- UICollectionViewDataSource
     
     ///返回Section的个数
     func numberOfSections(in collectionView: UICollectionView) -> Int {
