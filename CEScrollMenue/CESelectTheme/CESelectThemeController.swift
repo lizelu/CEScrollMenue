@@ -104,7 +104,7 @@ class CESelectThemeController: UIViewController, UICollectionViewDataSource{
     /// - Returns: 返回重用Header
     private func fetchCEFirstHeaderCollectionReusableView(indexPath: IndexPath, kind: String) -> CEHeaderCollectionReusableView {
         let headerView: CEFirstHeaderCollectionReusableView = self.themeCollectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: firstSectionheaderReuseIdentifier, for: indexPath) as! CEFirstHeaderCollectionReusableView
-        headerView.editButton.isSelected = self.isEdit
+        headerView.selectedEditButton(isSelect: self.isEdit)
         headerView.titleLabel.text = "我的频道"
         weak var weak_self = self
         headerView.setTapEditButtonClosure { (isEdit) in

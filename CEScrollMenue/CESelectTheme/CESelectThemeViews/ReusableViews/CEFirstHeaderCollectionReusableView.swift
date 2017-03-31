@@ -10,8 +10,8 @@ import UIKit
 typealias TapEditButtonClosure = (Bool) -> Void
 class CEFirstHeaderCollectionReusableView: CEHeaderCollectionReusableView {
     
-    var editButton: CEThemeEditButton!
-    var editButtonClosure: TapEditButtonClosure!
+    private var editButton: CEThemeEditButton!  //第一个Header中的编辑按钮
+    private var editButtonClosure: TapEditButtonClosure!    //点击编辑按钮的回调
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -21,20 +21,23 @@ class CEFirstHeaderCollectionReusableView: CEHeaderCollectionReusableView {
         self.detailLabel.isHidden = true
     }
     
-    func setTapEditButtonClosure(editButtonClosure: @escaping TapEditButtonClosure) {
+    //MARK:- Public Method
+    public func setTapEditButtonClosure(editButtonClosure: @escaping TapEditButtonClosure) {
         self.editButtonClosure = editButtonClosure
     }
     
-    func setHiddenEditeButton(isHidden: Bool) {
-        self.editButton.isHidden = isHidden
+    public func selectedEditButton(isSelect: Bool) {
+        self.editButton.isSelected = isSelect
     }
     
-    func addEditButton() {
+    //MARK:- Private Method
+    private func addEditButton() {
         self.editButton = CEThemeEditButton(frame: CGRect(x: self.frame.width - 55, y: 26, width: 40, height: 25))
         self.editButton.addTarget(self, action: #selector(tapEditButton(sender:)), for: .touchUpInside)
         self.addSubview(self.editButton)
     }
     
+    //MARK:- Event Response
     func tapEditButton(sender: CEThemeEditButton) {
         editButton.isSelected = !editButton.isSelected
         detailLabel.isHidden = !editButton.isSelected

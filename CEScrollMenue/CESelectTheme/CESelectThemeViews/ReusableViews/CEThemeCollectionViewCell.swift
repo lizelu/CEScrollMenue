@@ -10,10 +10,10 @@ import UIKit
 typealias TapButtonClosure = (CEThemeCollectionViewCell) -> Void
 class CEThemeCollectionViewCell: UICollectionViewCell {
     
-    var textLabel: CEThemeLabel!
-    var editTagImageView: UIImageView!
-    var tapButtonClosure: TapButtonClosure!
-    var editButton: UIButton!
+    var textLabel: CEThemeLabel!    //菜单Name显示的Label
+    var editTagImageView: UIImageView!  //cell的背景图片
+    var tapButtonClosure: TapButtonClosure!     //点击Cell上的按钮事件
+    var editButton: UIButton!   //编辑Cell的按钮
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -61,6 +61,5 @@ class CEThemeCollectionViewCell: UICollectionViewCell {
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
     
 }
