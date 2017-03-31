@@ -155,14 +155,8 @@ class CESelectThemeController: UIViewController, UICollectionViewDataSource{
     
     //更新数据源
     private func updateDataSource(at: IndexPath, to: IndexPath) {
-        if at.section == to.section {
-            let temp = self.dataSource[at.section][at.row]
-            self.dataSource[at.section][at.row] = self.dataSource[to.section][to.row]
-            self.dataSource[to.section][to.row] = temp
-            return
-        }
         let removeItem = self.dataSource[at.section].remove(at: at.row)
-        self.dataSource[to.section].insert(removeItem, at: 0)
+        self.dataSource[to.section].insert(removeItem, at: to.row)
     }
 
     //MARK:- UICollectionViewDataSource
