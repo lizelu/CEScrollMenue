@@ -9,11 +9,11 @@
 import UIKit
 typealias TapSelectThemeClosure = () -> Void
 class CEMenuView: UIView, UICollectionViewDataSource {
-    var menueCollectionView: CEMenuCollectionView!      //存放菜单的CollectionView
-    var dataSource: DataSourceType!
-    var tapSelectThemeClosure: TapSelectThemeClosure!       //点击加号所执行的回调方法，将该事件回调到VC中，由VC显示操作菜单的页面
-    var didSelectItmeClosure: CEDidSelectItemClosureType!   //点击菜单的回调
-    var height: CGFloat {
+    private var menueCollectionView: CEMenuCollectionView!      //存放菜单的CollectionView
+    private var dataSource: DataSourceType!
+    private var tapSelectThemeClosure: TapSelectThemeClosure!       //点击加号所执行的回调方法，将该事件回调到VC中，由VC显示操作菜单的页面
+    private var didSelectItmeClosure: CEDidSelectItemClosureType!   //点击菜单的回调
+    private var height: CGFloat {
         get {
             return self.frame.size.height
         }
@@ -47,7 +47,7 @@ class CEMenuView: UIView, UICollectionViewDataSource {
     /// - Parameter data: 更新后的数据源
     public func updateDataSource(data: DataSourceType) {
         self.dataSource = data
-        self.menueCollectionView.data = data[0]
+        self.menueCollectionView.setDataSource(data: data[0])
         self.menueCollectionView.reloadData()
     }
 
