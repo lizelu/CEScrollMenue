@@ -100,7 +100,7 @@ class CEMenuView: UIView, UICollectionViewDataSource {
     }
     
     private func getMenueCollectionViewFrame() -> CGRect {
-        return CGRect(x: 0, y: 0, width: SCREEN_WIDTH, height: height)
+        return CGRect(x: 0, y: 0, width: SCREEN_WIDTH, height: 60)
     }
 
     private func getSelectButtonFrame() -> CGRect {

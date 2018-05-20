@@ -11,10 +11,12 @@ import UIKit
 class MeteData: CEThemeDataSourceProtocal {
     var name: String = ""
     var width: Float = 30
+    var bigWidth: Float = 30
     var selected: Bool = false
     init(name: String) {
         self.name = name
-        self.width = Float(calculateContentWidth(contentText: self.name))
+        self.width = Float(calculateContentWidth(contentText: self.name, fontSize: 15))
+        self.bigWidth = Float(calculateContentWidth(contentText: self.name, fontSize: 22))
     }
     
     func menuItemName() -> String {
@@ -25,6 +27,10 @@ class MeteData: CEThemeDataSourceProtocal {
        return self.width
     }
     
+    func itemBigWidth() -> Float {
+        return self.bigWidth
+    }
+    
     func isSelect() -> Bool {
         return self.selected
     }
@@ -33,10 +39,10 @@ class MeteData: CEThemeDataSourceProtocal {
         self.selected = select
     }
     
-    func calculateContentWidth(contentText: String) -> CGFloat {
+    func calculateContentWidth(contentText: String , fontSize: CGFloat) -> CGFloat {
         let maxLabelSize: CGSize = CGSize(width: 1000, height: 0)
         let contentNSString = contentText as NSString
-        let rect = contentNSString.boundingRect(with: maxLabelSize, options: .usesLineFragmentOrigin, attributes: [NSFontAttributeName : UIFont.systemFont(ofSize: 15)], context: nil)
+        let rect = contentNSString.boundingRect(with: maxLabelSize, options: .usesLineFragmentOrigin, attributes: [NSFontAttributeName : UIFont.systemFont(ofSize: fontSize)], context: nil)
         return rect.size.width
 
     }

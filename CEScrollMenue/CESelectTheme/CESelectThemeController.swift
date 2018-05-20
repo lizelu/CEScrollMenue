@@ -13,7 +13,7 @@ let SCREEN_HEIGHT = UIScreen.main.bounds.height
 let SelectThemeBackgroundColor = UIColor(red: 235/255, green: 235/255, blue: 235/255, alpha: 1)
 typealias DataSourceType = Array<Array<CEThemeDataSourceProtocal>>
 
-typealias UpdataDataSourceClosure = (DataSourceType!) -> Void
+typealias UpdataDataSourceClosure = (DataSourceType?) -> Void
 
 class CESelectThemeController: UIViewController, UICollectionViewDataSource{
     

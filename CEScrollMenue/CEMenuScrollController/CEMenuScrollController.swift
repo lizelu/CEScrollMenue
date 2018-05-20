@@ -38,7 +38,7 @@ class CEMenuScrollController: UIViewController, UICollectionViewDataSource {
     
     /// 添加菜单View
     private func addMenuView() {
-        self.menuView = CEMenuView(dataSource: self.dataSource, frame: CGRect(x: 0, y: 63, width: SCREEN_WIDTH, height: 45))
+        self.menuView = CEMenuView(dataSource: self.dataSource, frame: CGRect(x: 0, y: 200, width: SCREEN_WIDTH, height: 60))
         weak var weak_self = self
         self.menuView.setTapSelectThemeClosure {
             weak_self?.presentCESelectThemeController()
@@ -80,7 +80,7 @@ class CEMenuScrollController: UIViewController, UICollectionViewDataSource {
         
         //获取更新后的DataSource
         selectThemeController.setUpdateDataSourceClosure { (dataSource) in
-            self.updateDataSource(dataSource: dataSource)
+            self.updateDataSource(dataSource: dataSource!)
             let firstIndexPath = IndexPath(row: 0, section: 0)
             self.menuView.scrollToItem(indexPath: firstIndexPath)
             self.contentCollectionView.scrollToItem(at: firstIndexPath, at: UICollectionViewScrollPosition.centeredHorizontally, animated: true)

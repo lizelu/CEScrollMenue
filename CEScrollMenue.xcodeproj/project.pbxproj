@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		F42758D620AF1265007567AB /* CEMenuCollectionViewFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = F42758D520AF1264007567AB /* CEMenuCollectionViewFlowLayout.swift */; };
 		F42A76A51E8B92FB000E1107 /* CEFirstHeaderCollectionReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F42A769E1E8B92FB000E1107 /* CEFirstHeaderCollectionReusableView.swift */; };
 		F42A76A61E8B92FB000E1107 /* CEHeaderCollectionReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F42A769F1E8B92FB000E1107 /* CEHeaderCollectionReusableView.swift */; };
 		F42A76A71E8B92FB000E1107 /* CEThemeCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F42A76A01E8B92FB000E1107 /* CEThemeCollectionViewCell.swift */; };
@@ -31,6 +32,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		F42758D520AF1264007567AB /* CEMenuCollectionViewFlowLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CEMenuCollectionViewFlowLayout.swift; sourceTree = "<group>"; };
 		F42A769E1E8B92FB000E1107 /* CEFirstHeaderCollectionReusableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CEFirstHeaderCollectionReusableView.swift; sourceTree = "<group>"; };
 		F42A769F1E8B92FB000E1107 /* CEHeaderCollectionReusableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CEHeaderCollectionReusableView.swift; sourceTree = "<group>"; };
 		F42A76A01E8B92FB000E1107 /* CEThemeCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CEThemeCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -93,6 +95,7 @@
 				F42A76AE1E8B9772000E1107 /* CEMenuCollectionView.swift */,
 				F42A76B01E8B9D6C000E1107 /* CEMenuCollectionViewCell.swift */,
 				F42A76B41E8C9998000E1107 /* CEMenuView.swift */,
+				F42758D520AF1264007567AB /* CEMenuCollectionViewFlowLayout.swift */,
 			);
 			path = CEScrollMenue;
 			sourceTree = "<group>";
@@ -258,6 +261,7 @@
 				F42A76A71E8B92FB000E1107 /* CEThemeCollectionViewCell.swift in Sources */,
 				F42A76AA1E8B92FB000E1107 /* CEThemeLabel.swift in Sources */,
 				F42A76A61E8B92FB000E1107 /* CEHeaderCollectionReusableView.swift in Sources */,
+				F42758D620AF1265007567AB /* CEMenuCollectionViewFlowLayout.swift in Sources */,
 				F42A76B91E8CDA7B000E1107 /* CEThemeDataSourceProtocal.swift in Sources */,
 				F42A76A91E8B92FB000E1107 /* CEThemeEditButton.swift in Sources */,
 				F42A76A51E8B92FB000E1107 /* CEFirstHeaderCollectionReusableView.swift in Sources */,
